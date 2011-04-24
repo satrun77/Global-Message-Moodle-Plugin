@@ -1,0 +1,97 @@
+#middle-column {
+	font:13px/1.231 arial,helvetica,clean,sans-serif;
+	*font-size:small;
+	*font:x-small;
+}
+select,input,button,textarea {
+	font:99% arial,helvetica,clean,sans-serif;
+}
+table {
+	font-size:inherit;
+	font:100%;
+}
+pre,code,kbd,samp,tt {
+	font-family:monospace;
+	*font-size:108%;
+	line-height:100%;
+}
+#gm-about-tab p {
+    margin-bottom: 8px;
+    margin-top: 0;
+}
+#gm-about-tab .yui-content ul {
+    margin: 8px 0;
+    padding: 0 0 0 25px;
+}
+#gm-about-tab .yui-content ul li {
+    margin: 3px 0;
+}
+#gm-about-tab code, #gm-about-tab  .code {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px dashed #CCCCCC;
+    float: left;
+    line-height: 20px;
+    padding: 5px;
+    width: 98%;
+}
+#gm-about-tab pre {
+    margin-top: 0px;
+}
+#gm-general, #gm-installation, #gm-rule-plugin, #gm-author {
+    margin: 10px 0;
+}
+#gm-version {
+    background: none repeat scroll 0 0 #FFFFE1;
+    border: 1px solid #DAA71E;
+    float: right;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 5px;
+    width: auto;
+}
+#gm-notice.noticebox {
+    background: none repeat scroll 0 0 #FCFCFC;
+    border: 1px solid #DDDDDD;
+    text-align: left;
+}
+#gm-notice ul {
+    border: 1px solid #DDDDDD;
+}
+#gm-notice ul ul {
+    border: 0 none;
+    list-style: square outside none;
+    padding: 0 0 0 20px !important;
+}
+#gm-about-tab .warning {
+    background: none repeat scroll 0 0 #FBDDE2;
+    border: 1px solid #FE5E5E;
+    font-style: italic;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 5px;
+}
+#gm-about-tab .warning h3 {
+    font-size: 17px;
+    margin: 0 0 5px;
+}
+#gm-installation ol, #gm-rule-plugin ol {
+    margin: 0px;
+    padding: 0 0 0 25px;    overflow: hidden;
+}
+#gm-installation li, #gm-rule-plugin li {
+    float: left;
+    list-style: decimal outside none;
+    margin: 5px 0;
+    width: 100%;
+}
+#gm-author ul {
+    list-style: none outside none;
+    padding-left: 0 !important;    margin: 10px 0px !important;
+}
+#gm-author ul strong {
+    float:left;
+    width:70px;
+}
+#rule-template {
+    overflow: hidden;
+}
