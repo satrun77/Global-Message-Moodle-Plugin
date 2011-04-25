@@ -253,7 +253,6 @@ globalmessage.messagedialog = function() {
         return true;
     }
     this.validate = function(data) {
-        console.log(data)
         var description = data.description;
         if (typeof(tinyMCE) != 'undefined') {
             description = tinyMCE.get('id_description').getContent();
