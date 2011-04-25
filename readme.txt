@@ -10,6 +10,7 @@ Version:   1.0.2
 1.0.0 - First version
 1.0.1 - Fixed the issue with Moodle standard html editor
 1.0.2 - Some language changes
+1.1.0 - Move all of the string content from the about page to the language file
 
 == Installation ==
 1. Copy and paste the folder globalmessage into the local directory. If you don't have a local directory then create one in the Moodle root folder.
