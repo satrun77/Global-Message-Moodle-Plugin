@@ -4,7 +4,7 @@ Author:    Mohamed Alsharaf (mohamed.alsharaf@gmail.com)
 Website:   http://jamandcheese-on-phptoast.com
 Copyright: 2011-2012 Mohamed Alsharaf
 License:   http://www.gnu.org/copyleft/gpl.html
-Version:   1.1.1
+Version:   1.2.0
 
 == Changelog: ==
 1.0.0 - First version
@@ -12,6 +12,7 @@ Version:   1.1.1
 1.0.2 - Some language changes
 1.1.0 - Move all of the string content from the about page to the language file
 1.1.1 - Remove un-wanted line of code in manage.js that causes the JavaScript to not work
+1.2.0 - Added Spanish translation (By the Moodler "Nacho Aguilar")
 
 == Installation ==
 1. Copy and paste the folder globalmessage into the local directory. If you don't have a local directory then create one in the Moodle root folder.
