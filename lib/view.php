@@ -255,7 +255,7 @@ class moo_globalmessage_view
      */
     protected function message_outter_styles($message)
     {
-        $styles = 'width:' . (int) $this->message->width . 'px;height:' . (int) $this->message->height . 'px;'
+        $styles = 'width:' . (int) $message->width . 'px;height:' . (int) $message->height . 'px;'
                 . 'padding:' . join('px ', $message->padding) . 'px;';
 
         if ($message->bordersize > 0) {
