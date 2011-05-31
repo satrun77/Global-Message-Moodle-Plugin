@@ -209,7 +209,7 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
             if ($this->is_date($value[0])) {
                 // if the date rule return false then
                 // the message must be disabled (expired message)
-                $expression = $this->process_expression($value[1], time(), $value[2]);
+                $expression = $this->process_expression(time(), $value[1], $value[2]);
                 if (!$expression) {
                     $this->model('message')->disable($message->id);
                     return true;
