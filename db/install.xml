@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/globalmessage/db" VERSION="20110319" COMMENT="XMLDB file for Moodle local/globalmessage"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="globalmessages_designs" COMMENT="Defines messages designs parameters" NEXT="globalmessages">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="height"/>
+        <FIELD NAME="height" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="400" SEQUENCE="false" PREVIOUS="name" NEXT="width"/>
+        <FIELD NAME="width" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="400" SEQUENCE="false" PREVIOUS="height" NEXT="bgcolor"/>
+        <FIELD NAME="bgcolor" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" PREVIOUS="width" NEXT="bgimage"/>
+        <FIELD NAME="bgimage" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" PREVIOUS="bgcolor" NEXT="bgimageposition"/>
+        <FIELD NAME="bgimageposition" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="bgimage" NEXT="bgimagerepeat"/>
+        <FIELD NAME="bgimagerepeat" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" PREVIOUS="bgimageposition" NEXT="bordersize"/>
+        <FIELD NAME="bordersize" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" DEDEFAULT="0" PREVIOUS="bgimagerepeat" NEXT="bordercolor"/>
+        <FIELD NAME="bordercolor" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" PREVIOUS="bordersize" NEXT="bordershape"/>
+        <FIELD NAME="bordershape" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" PREVIOUS="bordercolor" NEXT="padding"/>
+        <FIELD NAME="padding" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="bordershape" NEXT="innerpadding"/>
+        <FIELD NAME="innerpadding" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="padding"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="globalmessages" COMMENT="Defines global messages" PREVIOUS="globalmessages_designs" NEXT="globalmessages_rules">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="summary"/>
+        <FIELD NAME="summary" TYPE="text" LENGTH="medium" NOTNULL="true" SEQUENCE="false" PREVIOUS="name" NEXT="description"/>
+        <FIELD NAME="description" TYPE="text" LENGTH="big" NOTNULL="true" SEQUENCE="false" PREVIOUS="summary" NEXT="created"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="description" NEXT="modified"/>
+        <FIELD NAME="modified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="created" NEXT="status"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="modified" NEXT="design"/>
+        <FIELD NAME="design" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="status"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="design"/>
+        <KEY NAME="design" TYPE="foreign" FIELDS="design" REFTABLE="globalmessages_designs" REFFIELDS="id" PREVIOUS="primary"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="design" UNIQUE="false" FIELDS="design" NEXT="modified"/>
+        <INDEX NAME="modified" UNIQUE="false" FIELDS="modified" PREVIOUS="design"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="globalmessages_rules" COMMENT="Defines messages rules" PREVIOUS="globalmessages">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="construct"/>
+        <FIELD NAME="construct" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="leftside"/>
+        <FIELD NAME="leftside" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="construct" NEXT="operator"/>
+        <FIELD NAME="operator" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="leftside" NEXT="rightside"/>
+        <FIELD NAME="rightside" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="operator" NEXT="message"/>
+        <FIELD NAME="message" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="rightside"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="message"/>
+        <KEY NAME="message" TYPE="foreign" FIELDS="message" REFTABLE="globalmessages" REFFIELDS="id" PREVIOUS="primary"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="message" UNIQUE="false" FIELDS="message"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

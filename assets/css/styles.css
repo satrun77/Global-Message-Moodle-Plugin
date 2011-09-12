@@ -3,6 +3,7 @@
 	*font-size:small;
 	*font:x-small;
 }
+
 select,input,button,textarea {
 	font:99% arial,helvetica,clean,sans-serif;
 }
@@ -70,12 +71,12 @@ pre,code,kbd,samp,tt {
 }
 .gm-dialog  .fitem .fgroup label {
     color: #666666;
-    float: left;
+    float: left !important;
     font-style: italic;
     left: 0;
     position: relative;
     top: 0;
-    width: 9%;
+    width: 9% !important;
 }
 .gm-dialog .fitem .fgroup input {
     float: left;
@@ -84,6 +85,7 @@ pre,code,kbd,samp,tt {
     margin-right: 30px;
     width: auto;
 }
+
 #id_padding_right, #id_padding_left, #id_innerpadding_left, #id_innerpadding_right, #id_bgimageposition_left {
     margin-right: 0;
 }
@@ -97,8 +99,27 @@ pre,code,kbd,samp,tt {
 #gm-table {
     clear:both;
 }
-#gm-table th, #gm-rulestable th {
+#gm-table th.header, #gm-rulestable th.header {
     text-align:left;
+}
+.yui-skin-sam .yui-calendar td.calcell a {
+    color: #0066CC !important;
+}
+.yui-skin-sam .yui-calendar td.calcell a:hover {
+    color:#fff !important;
+}
+.yui-skin-sam  .calhead {
+    color:#000 !important;
+}
+#gm-add-rule {
+    background: url("../../../../lib/yui/2.8.2/build/assets/skins/sam/sprite.png") repeat-x scroll 0 0 #2647A0 !important;
+    border: 1px solid #000000;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+#gm-add-rule a {
+    color: #000000 !important;
+    padding: 1px 5px;
 }
 .gm-toolbar button span {
     float:left;  margin-top: 0px;    margin-left: 15px;
@@ -109,11 +130,11 @@ pre,code,kbd,samp,tt {
 }
 #gm-addnew button{
     background: url("../img/add.png") no-repeat scroll 3px 2px transparent;
-    width: 171px;
+    width: 177px;
 }
 #gm-design button {
     background: url("../img/design.png") no-repeat scroll 3px 2px transparent;
-    width: 189px;
+    width: 195px;
 }
 .gm-toolbar {
     border-bottom: 1px solid #CCCCCC;
@@ -134,6 +155,7 @@ pre,code,kbd,samp,tt {
 }
 #gm-rulestable select {
     width: auto;
+        padding: 5px 0;
 }
 #gm-rulestable .c1 {
     width: 85px;
@@ -145,11 +167,13 @@ pre,code,kbd,samp,tt {
     width: 165px;
 }
 #gm-rulestable .c5 {
-    text-align: right;
+    text-align: center !important;
     width: 45px;
 }
 #gm-rulestable .text {
-    width: 99%;
+    width: 99%;    
+    padding: 5px 1px;
+        margin: 0 !important;
 }
 #calendar {
     border-collapse: collapse;
@@ -173,4 +197,10 @@ pre,code,kbd,samp,tt {
 }
 #gm-notice.noticebox {
     border:1px solid #DDDDDD;
+}
+.yui-skin-sam .yui-dialog .ft, .yui-skin-sam .yui-panel .bd {
+    background: #fff;
+}
+.yui-dialog {
+    position:fixed;
 }

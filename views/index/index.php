@@ -10,11 +10,10 @@
 </div>
 
 <?php
-$tabledata = array();
-$rowclass = array();
+$table = new html_table();
 if ($this->messages) {
     foreach($this->messages as $message) {
-        $tabledata[] = array(
+        $table->data[] = array(
             "<a href='javascript:;' onclick='globalmessage.showeditform(" . $message->id . ");'>" . $this->textformat($message->name) . "</a>",
             $this->textformat($message->summary),
             $this->dateformat($message->modified),
@@ -23,24 +22,22 @@ if ($this->messages) {
             "<a href='javascript:;' onclick='globalmessage.showeditform(" . $message->id . ");'>" . $this->get_string_fromcore('edit') . "</a> | " .
             "<a href='javascript:;' onclick='globalmessage.removemessage(" . $message->id . ");'>" . $this->get_string_fromcore('remove') . "</a>",
         );
-        $rowclass[] = 'message-' . $message->id;
+        $table->rowclasses[] = 'message-' . $message->id;
     }
 }
-$this->print_table(array(
-    'head' => array(
-        $this->get_string('name'),
-        $this->get_string('summary'),
-        $this->get_string('timemodified'),
-        $this->get_string('status'),
-        ''
-    ),
-    'width' => '100%',
-    'data' => $tabledata,
-    'rowclass' => $rowclass,
-    'id' => 'gm-table',
-    'size' => array('','','245px','70px','155px')
-));
-$this->print_paging_bar($this->countmessages, $this->page, $this->perpage, "index.php");
+$table->head = array(
+    $this->get_string('name'),
+    $this->get_string('summary'),
+    $this->get_string('timemodified'),
+    $this->get_string('status'),
+    ''
+);
+$table->width = '100%';
+$table->id = 'gm-table';
+$table->size =array('40%','20%','20%','5%','15%');
+
+echo $this->print_table($table);
+echo $this->print_paging_bar($this->countmessages, $this->page, $this->perpage, "index.php");
 ?>
 
 <div id="gm-strings">
@@ -62,6 +59,7 @@ $this->print_paging_bar($this->countmessages, $this->page, $this->perpage, "inde
     <input type="hidden" name="loadingimg" value="<?php echo $this->base_url('assets/img/loading.gif'); ?>"/>
     <input type="hidden" name="loadingtext" value="<?php echo $this->get_string('loadingtext'); ?>"/>
 </div>
+
 <?php echo $this->render_partial('partial/message-form'); ?>
 <?php echo $this->render_partial('partial/rule-form'); ?>
 <?php echo $this->render_partial('partial/design-form'); ?>

@@ -9,5 +9,5 @@ $globalmessage = new moo_globalmessage(array(
     'user' => $USER,
     'course' => $COURSE
 ));
-$globalmessage->controller(optional_param('action', 'index', PARAM_ALPHAEXT))
+$globalmessage->controller(optional_param('action', 'index', PARAM_SAFEPATH))
               ->run();

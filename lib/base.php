@@ -13,7 +13,7 @@ define('INTERNAL_ACCESS', 1);
  */
 class moo_globalmessage
 {
-    private $version = '1.4.1';
+    private $version = '2.0.0 Beta';
     protected $user;
     protected $config;
     protected $course;
@@ -140,7 +140,7 @@ class moo_globalmessage
      */
     public function get_string($name, $a = null)
     {
-        return get_string($name, 'globalmessage', $a, $this->config->dirroot . '/local/globalmessage/lang/');
+        return stripslashes(get_string($name, 'local_globalmessage', $a));
     }
 
     /**
@@ -222,7 +222,7 @@ class moo_globalmessage
         // dont show the message if the current user is admin
         // and globalmessagedisableforadminrole is true
         $context = get_context_instance(CONTEXT_SYSTEM);
-        if ($me->get_config('globalmessagedisableforadminrole') && has_capability('moodle/site:doanything', $context)) {
+        if ($me->get_config('globalmessagedisableforadminrole') && has_capability('local/globalmessage:isadminrole', $context)) {
             return;
         }
 

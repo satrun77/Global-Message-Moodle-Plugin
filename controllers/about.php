@@ -19,12 +19,15 @@ class moo_globalmessage_controller_about extends moo_globalmessage_controller
     {
         $this->view->pageheading = $this->get_string('aboutglobalmessageheading');
 
-        $this->yui_skin(array('tabview'));
         $this->head_link(array(
-            $this->view->base_url('assets/css/about.css')
+            $this->view->base_url('assets/css/about.css', true)
         ));
-        $this->head_script(array('yui_dom-event', 'yui_element', 'yui_tabview', $this->view->base_url('assets/js/about.js')));
 
+        $this->head_module_script(array(
+            'name' => 'moo_gm',
+            'fullpath' => 'about.js',
+            'requires' => array('base', 'cssfonts', 'tabview')
+        ));
         $this->view->ruletemplate = $this->get_rule_template();
     }
 

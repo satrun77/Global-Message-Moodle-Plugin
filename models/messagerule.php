@@ -105,8 +105,8 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
 
     public function fetch_rules_bymessage($messageid)
     {
-        $rs = get_recordset('globalmessages_rules', 'message', $messageid, 'id ASC');
-        if (($records = $rs->GetAssoc(true))) {
+        $records = $this->db->get_records('globalmessages_rules', array('message'=> $messageid), 'id ASC');
+        if ($records) {
             return $records;
         }
         return false;
@@ -121,8 +121,8 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
         }
 
         // remove existing rules
-        delete_records('globalmessages_rules', 'message', $message->id);
-
+        $this->db->delete_records('globalmessages_rules', array('message'=> $message->id));
+        
         // filter, validate, and then insert the new rules
         foreach ($rules as $key => $rule) {
             $filteredrule = $this->filter_rule_fordb($rule, $key);
@@ -134,7 +134,7 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
                     'rightside' => $filteredrule[3],
                     'message' => $message->id
                 );
-                insert_record('globalmessages_rules', (object) $rulesdata);
+                $this->db->insert_record('globalmessages_rules', (object) $rulesdata);
             }
         }
 
@@ -223,7 +223,6 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
     protected function filter_rule_fordb($role, $key)
     {
         $segments = explode('|', $role);
-
         // make sure the first part of the rule is if
         if ($key == 0) {
             $segments[0] = self::CONSTRUCT_IF;
@@ -267,15 +266,15 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
         $expression = '';
         $rulesparts = array();
         foreach ($rules as $rule) {
-            $leftside = $this->get_leftside_value($rule['leftside'], $options);
-            $rightside = $this->get_rightside_value($rule['rightside']);
-            $construct = $this->get_construct_value($rule['construct']);
+            $leftside = $this->get_leftside_value($rule->leftside, $options);
+            $rightside = $this->get_rightside_value($rule->rightside);
+            $construct = $this->get_construct_value($rule->construct);
 
-            $expression .= ' ' . $construct . ' (boolean)' . $this->process_expression($leftside, $rightside, $rule['operator']) . ' === true';
-            $rulesparts[$rule['construct']] = array(
-                $rule['leftside'],
+            $expression .= ' ' . $construct . ' (boolean)' . $this->process_expression($leftside, $rightside, $rule->operator) . ' === true';
+            $rulesparts[$rule->construct] = array(
+                $rule->leftside,
                 $rightside,
-                $rule['operator']
+                $rule->operator
             );
         }
 

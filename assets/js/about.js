@@ -1,5 +1,8 @@
-// onload
-YAHOO.util.Event.onDOMReady(function() {
-    document.body.className += ' yui-skin-sam';
-    new YAHOO.widget.TabView("gm-about-tab");
-});
+M.moo_gm = {};
+
+M.moo_gm.init = function(Y) {
+    YUI({ filter: 'raw' }).use('tabview', function(Y) {
+        var tabview = new Y.TabView({srcNode: '#gm-about-tab'});
+        tabview.render();
+    });
+};

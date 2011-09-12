@@ -1,3 +1,4 @@
+M.moo_gm = {};
 var messagedialog, ruledialog, loading;
 var globalmessage = {};
 globalmessage.select = function(select) {
@@ -112,9 +113,9 @@ globalmessage.dialog = function() {
         // Instantiate the Dialog
         this.dialog = new YAHOO.widget.Dialog(this.elementid,
         {
-            modal: false,
+            modal: true,
             width : this.width,
-            fixedcenter : false,
+            fixedcenter : true,
             visible : false,
             constraintoviewport : false,
             hideaftersubmit: false,
@@ -154,6 +155,10 @@ globalmessage.dialog = function() {
         };
         this.dialog.render();
         this.dialog.center();
+        var dialogel = YAHOO.util.Dom.get(this.elementid+'_c');
+        if (parseInt(dialogel.style.top) < 0) {
+            dialogel.style.top = '0px';
+        }
         this.isrendered = true;
         this.afterRender();
     }
@@ -331,6 +336,7 @@ globalmessage.removemessage = function(messageid) {
         visible: false,
         draggable: false,
         close: true,
+        modal: true,
         text: globalmessage.string('removemessagetext'),
         icon: YAHOO.widget.SimpleDialog.ICON_HELP,
         constraintoviewport: true,
@@ -344,7 +350,7 @@ globalmessage.removemessage = function(messageid) {
         } ]
     } );
     confirmDialog.setHeader(globalmessage.string('confirmtitle'));
-    confirmDialog.render("middle-column");
+    confirmDialog.render("page-admin-local-globalmessage-index");
     confirmDialog.show();
     highlightRow(true);
 };
@@ -794,10 +800,9 @@ globalmessage.removerule = function(rule) {
     return true;
 }
 
-// onload
-YAHOO.util.Event.onDOMReady(function() {
+M.moo_gm.init = function(Y) {
     document.body.className += ' yui-skin-sam';
-
+    
     loading = new YAHOO.widget.Panel("gm-loading", {
         width: "240px",
         fixedcenter: true,
@@ -823,6 +828,7 @@ YAHOO.util.Event.onDOMReady(function() {
 
     var designdialog = new globalmessage.designdialog();
     designdialog.render();
+    
     new YAHOO.widget.Button("gm-design", {
         onclick: {
             fn: function() {
@@ -830,4 +836,4 @@ YAHOO.util.Event.onDOMReady(function() {
             }
         }
     });
-});
+};
