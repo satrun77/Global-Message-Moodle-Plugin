@@ -16,8 +16,8 @@ class moo_globalmessage_model_message extends moo_globalmessage_model
 
     public function delete($messageid)
     {
-        delete_records('globalmessages_rules', 'message', $messageid);
-        return delete_records('globalmessages', 'id', $messageid);
+        $this->db->delete_records('globalmessages_rules', array('message'=> $messageid));
+        return $this->db->delete_records('globalmessages', array('id'=> $messageid));
     }
 
     public function disable($messageid)
@@ -28,9 +28,9 @@ class moo_globalmessage_model_message extends moo_globalmessage_model
         return $this->save_message($data);
     }
 
-    public function count_messages()
+    public function count_messages($conditions = null)
     {
-        return count_records('globalmessages');
+        return $this->db->count_records('globalmessages', $conditions);
     }
 
     public function fetch_all_messages($options = null)
@@ -46,24 +46,24 @@ class moo_globalmessage_model_message extends moo_globalmessage_model
             $options['page'] = $options['page'] * $options['perpage'];
         }
 
-        return get_records_sql("SELECT * FROM " . $this->table_name('globalmessages') . " ORDER BY modified DESC", $options['page'], $options['perpage']);
+        return $this->db->get_records_sql("SELECT * FROM {globalmessages} ORDER BY modified DESC", null, $options['page'], $options['perpage']);
     }
 
     public function fetch_message_byid($id)
     {
-        return get_record('globalmessages', 'id', $id);
+        return $this->db->get_record('globalmessages', array('id' => $id));
     }
 
     public function save_message($data)
     {
         if (isset($data->id) && $data->id > 0) {
             $data->modified = time();
-            update_record('globalmessages', (object) $data);
+            $this->db->update_record('globalmessages', (object) $data);
             return $data->id;
         } else {
             $data->created = time();
             $data->modified = $data->created;
-            return insert_record('globalmessages', (object) $data);
+            return $this->db->insert_record('globalmessages', (object) $data, true);
         }
     }
 
@@ -71,13 +71,12 @@ class moo_globalmessage_model_message extends moo_globalmessage_model
     {
         $sql = "SELECT g.*, d.height, d.width, d.bgcolor, d.bgimage, d.bgimageposition, d.bgimagerepeat, d.bordersize, d.bordercolor, "
                 . "d.innerpadding, d.padding, d.bordershape "
-                . "FROM " . $this->table_name('globalmessages') . " AS g "
-                . "LEFT JOIN " . $this->table_name('globalmessages_designs') . " AS d ON d.id = g.design "
+                . "FROM {globalmessages} AS g "
+                . "LEFT JOIN {globalmessages_designs} AS d ON d.id = g.design "
                 . "WHERE g.status = 1 "
                 . "ORDER BY g.modified DESC";
-
         // @todo cache the result?
-        $messages = get_records_sql($sql);
+        $messages = $this->db->get_records_sql($sql);
         $messagerule = $this->globalmessage->model('messagerule');
         if (!$messages) {
             return false;
@@ -86,7 +85,7 @@ class moo_globalmessage_model_message extends moo_globalmessage_model
         foreach ($messages as $message) {
             // skip the message if the current user has seen it
             if (isset($options['user']->globalmessage) && in_array($message->id, $options['user']->globalmessage)) {
-                continue;
+               // continue;
             }
             // check rules if ok return and stop
             if ($messagerule->check_message_rules($message, $options)) {

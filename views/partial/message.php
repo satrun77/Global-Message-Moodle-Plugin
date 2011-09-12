@@ -3,7 +3,7 @@
 <?php if($this->ispreview): ?>
 <div id="gm-message-popup">
     <div>
-        <a class="gm-close" style="margin-bottom: 5px;margin-top: 4px;float:right;padding: 3px 6px;background: url(<?php echo $this->core_url('lib/yui/assets/skins/sam/sprite.png'); ?>) no-repeat scroll 0 -300px transparent;cursor: pointer;height: 9px;width: 17px;overflow: hidden;text-decoration: none;text-indent: -999999px;" href="javascript:;">[x]</a>
+        <a class="gm-close" style="margin-bottom: 5px;margin-top: 4px;float:right;padding: 3px 6px;background: url(<?php echo $this->core_url('lib/yui/2.8.2/build/assets/skins/sam/sprite.png'); ?>) no-repeat scroll 0 -300px transparent;cursor: pointer;height: 9px;width: 17px;overflow: hidden;text-decoration: none;text-indent: -999999px;" href="javascript:;">[x]</a>
         <div id="gm-message-inner" style="clear:both;">
             <p>Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipiscing elit. Cras congue blandit suscipit. Nulla lobortis tempus eleifend. Morbi mi massa,
                 laoreet nec egestas ac, tincidunt sed massa. Proin eleifend, leo eu feugiat pharetra, erat urna dictum leo, ultrices aliquam magna libero
@@ -19,7 +19,7 @@
 <?php elseif($this->message): ?>
 <div id="gm-message-popup" style="<?php echo $this->message_outter_styles($this->message); ?>">
     <div>
-        <a class="gm-close" style="margin-bottom: 5px;margin-top: 4px;float:right;padding: 3px 6px;background: url(<?php echo $this->core_url('lib/yui/assets/skins/sam/sprite.png'); ?>) no-repeat scroll 0 -300px transparent;cursor: pointer;height: 9px;width: 17px;overflow: hidden;text-decoration: none;text-indent: -999999px;" href="javascript:;" onclick="document.getElementById('gm-message-popup').style.display='none';">[x]</a>
+        <a class="gm-close" style="margin-bottom: 5px;margin-top: 4px;float:right;padding: 3px 6px;background: url(<?php echo $this->core_url('lib/yui/2.8.2/build/assets/skins/sam/sprite.png'); ?>) no-repeat scroll 0 -300px transparent;cursor: pointer;height: 9px;width: 17px;overflow: hidden;text-decoration: none;text-indent: -999999px;" href="javascript:;" onclick="document.getElementById('gm-message-popup').style.display='none';">[x]</a>
         <div id="gm-message-inner" style="<?php echo $this->message_inner_styles($this->message); ?>"><?php echo $this->message->description; ?></div>
     </div>
 </div>

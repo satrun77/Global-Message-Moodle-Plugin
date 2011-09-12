@@ -16,7 +16,7 @@ class moo_globalmessage_model_messagedesign extends moo_globalmessage_model
 
     public function fetch_design_byid($id)
     {
-        $design = get_record('globalmessages_designs', 'id', $id);
+        $design = $this->db->get_record('globalmessages_designs', array('id'=> $id));
         if ($design) {
             $design->bgimageposition = unserialize($design->bgimageposition);
             $design->innerpadding = unserialize($design->innerpadding);
@@ -29,7 +29,7 @@ class moo_globalmessage_model_messagedesign extends moo_globalmessage_model
     {
         $list = array();
 
-        $designs = get_records('globalmessages_designs', '', '', 'id, name');
+        $designs = $this->db->get_records('globalmessages_designs', null, 'name ASC', 'id, name');
         if (!$designs) {
             return $list;
         }
@@ -49,15 +49,15 @@ class moo_globalmessage_model_messagedesign extends moo_globalmessage_model
 
         if (isset($data->designid) && $data->designid > 0) {
             $data->id = $data->designid;
-            update_record('globalmessages_designs', (object) $data);
+            $this->db->update_record('globalmessages_designs', (object) $data);
             return $data->id;
         } else {
-            return insert_record('globalmessages_designs', (object) $data);
+            return $this->db->insert_record('globalmessages_designs', (object) $data, true);
         }
     }
 
     public function delete($designid)
     {
-        return delete_records('globalmessages_designs', 'id', $designid);
+        return $this->db->delete_records('globalmessages_designs', array('id'=> $designid));
     }
 }

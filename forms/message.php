@@ -30,7 +30,6 @@ class moo_globalmessage_form_message extends moo_globalmessage_form
 
         $this->_form->addElement('htmleditor', 'description', $this->get_string_fromcore('description'));
         $this->_form->setType('description', PARAM_RAW);
-        $this->_form->setHelpButton('description', array('writing', 'questions', 'richtext'), false, 'editorhelpbutton');
         $this->_form->addRule('description', $this->get_string_fromcore('required'), 'required', null, 'server');
 
         $ynoptions = array(0 => $this->get_string_fromcore('no'), 1 => $this->get_string_fromcore('yes'));

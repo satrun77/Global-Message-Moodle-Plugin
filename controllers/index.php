@@ -13,21 +13,24 @@ defined('INTERNAL_ACCESS') or die;
  */
 class moo_globalmessage_controller_index extends moo_globalmessage_controller
 {
+
     protected $pagename = 'globalmessagemanage';
 
     public function index_action()
     {
         $this->view->pageheading = $this->get_string('manageglobalmessageheading');
 
-        $this->yui_skin(array('button', 'container', 'calendar'));
         $this->head_link(array(
-            $this->view->base_url('assets/css/styles.css')
+            $this->view->base_url('assets/css/styles.css', true)
+        ));
+        $this->head_module_script(array(
+            'name' => 'moo_gm',
+            'fullpath' => 'manage.js',
+            'requires' => array('base', 'cssfonts', 'yui2-json', 'node', 'overlay', 'event', 'io', 'yui2-button', 'yui2-calendar', 'yui2-container', 'yui2-connection', 'yui2-animation', 'yui2-element')
         ));
         $this->head_script(array(
-            'yui_yahoo', 'yui_dom-event', 'yui_animation', 'yui_connection', 'yui_container',
-            'yui_element', 'yui_button', 'yui_json', 'yui_calendar',
-            $this->view->base_url('assets/js/yui-selector.js'),
-            $this->view->base_url('assets/js/manage.js')));
+            $this->view->base_url('assets/js/yui-selector.js', true)
+        ));
 
         $page = optional_param('page', 0, PARAM_INT);
         $perpage = optional_param('perpage', 30, PARAM_INT);
@@ -66,37 +69,41 @@ class moo_globalmessage_controller_index extends moo_globalmessage_controller
             die;
         }
 
-        $action = optional_param('actiontype', 'update');
+        try {
+            $action = optional_param('actiontype', 'update', PARAM_ALPHA);
 
-        $this->view->designs = $this->model('messagedesign')->fetch_all_forlist();
-        $form = $this->form('message', array(
-                    'action' => 'index.php?action=index/editmessage'
-                ));
+            $this->view->designs = $this->model('messagedesign')->fetch_all_forlist();
+            $form = $this->form('message', array(
+                        'action' => 'index.php?action=index/editmessage'
+                    ));
 
-        // form post
-        if (!confirm_sesskey()) {
-            $this->ajax_return(array('message' => $this->get_string('error1')), true);
-        } else if (!$form->is_validated()) {
-            $this->ajax_return(array('message' => $this->array_to_errormessage($form->get_errors())), true);
+            // form post
+            if (!confirm_sesskey()) {
+                $this->ajax_return(array('message' => $this->get_string('error1')), true);
+            } else if (!$form->is_validated()) {
+                $this->ajax_return(array('message' => $this->array_to_errormessage($form->get_errors())), true);
+            }
+
+            $formdata = $form->get_data();
+
+            $id = $this->model('message')->save_message($formdata);
+            $message = $this->model('message')->fetch_message_byid($id);
+            if (!$message) {
+                $this->ajax_return(array('message' => $this->get_string('error4')), true);
+            }
+
+            $this->ajax_return(array(
+                'rowcontent' => $this->view->render_partial('partial/message-row', array('message' => $message)),
+                'id' => ($action == 'update' ? $formdata->id : ''),
+                'data' => array(
+                    $message->name,
+                    $message->summary,
+                    $this->view->statusformat($message->status)
+                )
+            ));
+        } catch (moodle_exception $e) {
+            $this->ajax_return(array('message' => $e->getMessage()), true);
         }
-
-        $formdata = $form->get_data();
-
-        $id = $this->model('message')->save_message($formdata);
-        $message = $this->model('message')->fetch_message_byid($id);
-        if (!$message) {
-            $this->ajax_return(array('message' => $this->get_string('error4')), true);
-        }
-
-        $this->ajax_return(array(
-            'rowcontent' => $this->view->render_partial('partial/message-row', array('message' => $message)),
-            'id' => ($action == 'update' ? $formdata->id : ''),
-            'data' => array(
-                $message->name,
-                $message->summary,
-                $this->view->statusformat($message->status)
-            )
-        ));
     }
 
     public function getmessage_action()
@@ -124,6 +131,7 @@ class moo_globalmessage_controller_index extends moo_globalmessage_controller
         $id = optional_param('id', '-1', PARAM_INT);
         if (-1 !== $id) {
             $jsondata = $this->model('message')->fetch_message_byid($id);
+
             $rulemodel = $this->model('messagerule');
             $rules = $rulemodel->fetch_rules_bymessage($id);
             $jsondata->rules = array();
@@ -131,14 +139,14 @@ class moo_globalmessage_controller_index extends moo_globalmessage_controller
             $jsondata->constructoptions = $this->constructs_as_options($rulemodel->get_constructs());
             if ($rules) {
                 foreach ($rules as $ruleid => $rule) {
-                    $jsondata->rules[$ruleid] = $rule;
+                    $jsondata->rules[$ruleid] = (array) $rule;
                     $jsondata->rules[$ruleid]['id'] = $ruleid;
-                    $jsondata->rules[$ruleid]['constructtext'] = $rulemodel->get_construct($rule['construct']);
-                    $jsondata->rules[$ruleid]['leftsidetext'] = $rulemodel->get_leftside($rule['leftside']);
-                    $jsondata->rules[$ruleid]['operatortext'] = $rulemodel->get_operator($rule['operator']);
-                    $jsondata->rules[$ruleid]['rightsidetext'] = $rule['rightside'];
-                    if ($rulemodel->is_date($rule['leftside'])) {
-                        $jsondata->rules[$ruleid]['rightsidetext'] = $this->view->dateformat($rule['rightside'], '%A, %d %B %Y');
+                    $jsondata->rules[$ruleid]['constructtext'] = $rulemodel->get_construct($rule->construct);
+                    $jsondata->rules[$ruleid]['leftsidetext'] = $rulemodel->get_leftside($rule->leftside);
+                    $jsondata->rules[$ruleid]['operatortext'] = $rulemodel->get_operator($rule->operator);
+                    $jsondata->rules[$ruleid]['rightsidetext'] = $rule->rightside;
+                    if ($rulemodel->is_date($rule->leftside)) {
+                        $jsondata->rules[$ruleid]['rightsidetext'] = $this->view->dateformat($rule->rightside, '%A, %d %B %Y');
                     }
                 }
             }
@@ -162,8 +170,8 @@ class moo_globalmessage_controller_index extends moo_globalmessage_controller
             die;
         }
         $jsondata = array('error' => 0);
-        $rules = optional_param('gmrules', '-1');
-        $messageid = optional_param('messageid', '-1');
+        $rules = optional_param('gmrules', '-1', PARAM_TEXT);
+        $messageid = optional_param('messageid', '-1', PARAM_INT);
         if (is_array($rules) && !empty($rules) && $messageid > 0) {
             $jsondata['message'] = $this->get_string('rulessaved');
             if (!$this->model('messagerule')->save_rules($rules, $messageid)) {
@@ -195,8 +203,8 @@ class moo_globalmessage_controller_index extends moo_globalmessage_controller
             die;
         }
 
-        $action = optional_param('actiontype', 'update');
-        $designid = optional_param('designid', '');
+        $action = optional_param('actiontype', 'update', PARAM_ALPHA);
+        $designid = optional_param('designid', '', PARAM_INT);
 
         // form post
         $form = $this->form('design', array(
@@ -228,7 +236,7 @@ class moo_globalmessage_controller_index extends moo_globalmessage_controller
 
     public function removemessage_action()
     {
-        $id = optional_param('id', '-1');
+        $id = optional_param('id', '-1', PARAM_INT);
         if ($id < 0) {
             die;
         }
@@ -246,7 +254,7 @@ class moo_globalmessage_controller_index extends moo_globalmessage_controller
 
     public function removedesign_action()
     {
-        $id = optional_param('id', '-1');
+        $id = optional_param('id', '-1', PARAM_INT);
         if ($id < 0) {
             die;
         }

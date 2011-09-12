@@ -1,7 +1,7 @@
 <?php defined('GLOBALMESSAGE_VIEW') or die; ?>
 <div id="gm-about-tab" class="yui-navset">
     <ul class="yui-nav">
-        <li class="selected"><a href="#gm-general"><em><?php echo $this->get_string('general'); ?></em></a></li>
+        <li><a href="#gm-general"><em><?php echo $this->get_string('general'); ?></em></a></li>
         <li><a href="#gm-rule-plugin"><em><?php echo $this->get_string('customrules'); ?></em></a></li>
         <li><a href="#gm-author"><em><?php echo $this->get_string('author'); ?></em></a></li>
         <li><a href="#gm-uninstall"><em><?php echo $this->get_string('uninstall'); ?></em></a></li>
@@ -66,6 +66,15 @@
             </div>
         </div>
         <div id="gm-author">
+            <div style="float:right; border: 1px solid #C4C7D2; padding: 5px;text-align: center; background: none repeat scroll 0 0 #E4EEFF;">
+                <h4>Thank you for your support</h4>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHXwYJKoZIhvcNAQcEoIIHUDCCB0wCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYAzUCMA06RVe7mJNGHmCbA7h84idONigkuEjGMKfNX1aIP7ozVlyCJTRaU9A2tbYjUbacEQCYU3xK8JXzf84iMsOq+vernhQhOehsfzb5AcQoUCOPS0aqbtFYXdJbAqTJDPbZvZR3aTCXQWMnQL+W7P7NjfhQK2QI8RIJXAoqI9KDELMAkGBSsOAwIaBQAwgdwGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQInaj1RsGiQbaAgbhvngrQE7POG9REeHkl6ddoJVoQumiKcsoxmqoYCds7sMtsDHAJXQbYW6unF3EfYtoGk7tXqGoY4RowDqHN8jwoB8eRZhiU66yTeLBGy/bqGiKkJmflqe0VKP4W/ycnzGyDB908Cdbc3qAFkrzukTDj5R1FsRlcYzptpyNxmDcL8PiJT+ZHKTTa5r6ID2n1M3i6Gg4TbmvY0Zhu9jPjZuknzS8Nq8v4GClbRaFNSFSFN8+KSX6Ms6xboIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTEwNDE2MDUyOTUxWjAjBgkqhkiG9w0BCQQxFgQUKW8BkbQjkpVu7zSgWGNZseH26qUwDQYJKoZIhvcNAQEBBQAEgYAmuHAV+BNqerHQmJ3/CetgVzNCmrAxyPKY9YQ6nFITIobnH0p3TlgiwoEgCTgNsVe7ePVpAnNvQVSS7WdituGMqb+ftY2Pd3h5Z2pzXGPz6KAEl0dNGhjRnWUGan3ow1d6F+3a/NME5CWNYbNzZgDkB6Q1EQYgYtIwIe3OlnMepQ==-----END PKCS7-----">
+                <input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+            </div>
             <ul>
                 <li><strong><?php echo $this->get_string_fromcore('name'); ?>:</strong> Mohamed Alsharaf (mohamed.alsharaf@gmail.com)</li>
                 <li><strong><?php echo $this->get_string('website'); ?></strong> <a href="http://jamandcheese-on-phptoast.com/" target="_blank">http://jamandcheese-on-phptoast.com/</a></li>
@@ -77,10 +86,10 @@
             <p><?php echo $this->get_string('uninstall1'); ?></p>
             <ol>
                 <li><?php echo $this->get_string('uninstall2'); ?></li>
-                <li><?php echo $this->get_string('uninstall3'); ?></li>
-                <li><?php echo $this->get_string('uninstall4'); ?></li>
-                <li><?php echo $this->get_string('uninstall5'); ?></li>
-                <li><?php echo $this->get_string('uninstall6'); ?></li>
+                <li><?php echo $this->get_string('uninstall3'); ?><?php echo highlight_string("<?php
+include_once \$CFG->dirroot . '/local/globalmessage/lib/base.php';
+moo_globalmessage::show_message();
+?>", true); ?></li>
             </ol>
         </div>
     </div>

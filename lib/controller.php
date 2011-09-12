@@ -18,9 +18,13 @@ abstract class moo_globalmessage_controller
     protected $request = null;
     protected $view;
     protected $pagename = '';
-
+    protected $page;
+    
     public function __construct($action, $request, moo_globalmessage $base)
-    {
+    { 
+        global $PAGE;
+        
+        $this->page = $PAGE;
         $this->action = $action;
         $this->request = $request;
         $this->globalmessage = $base;
@@ -155,29 +159,24 @@ abstract class moo_globalmessage_controller
      * @param array $scripts
      * @return mix
      */
+    protected function yui2_lib(array $scripts)
+    {
+        return $this->page->requires->js_module($scripts);
+    }
+
+    protected function head_module_script($options, $data = array())
+    {
+        global $PAGE;
+        $options['fullpath'] = '/local/globalmessage/assets/js/' . $options['fullpath'];
+        return $PAGE->requires->js_init_call('M.moo_gm.init', $data, false, $options);
+    }
     protected function head_script(array $scripts)
     {
-        return require_js($scripts);
-    }
-
-    /**
-     * Add YUI CSS file to the <head>
-     * 
-     * @param array $styles
-     * @param string $skin
-     * @return void
-     */
-    protected function yui_skin(array $styles, $skin = 'sam')
-    {
-        $config = $this->get_config();
-        foreach ($styles as $style) {
-            $link = $config->wwwroot . '/lib/yui/' . $style . '/assets/skins/' . $skin . '/' . $style . '.css';
-            if (!in_array($link, $config->stylesheets)) {
-                $config->stylesheets[] = $link;
-            }
+        foreach ($scripts as $script) {
+            $this->page->requires->js($script);
         }
     }
-
+    
     /**
      * Add CSS file to the <head>
      * 
@@ -186,11 +185,8 @@ abstract class moo_globalmessage_controller
      */
     protected function head_link(array $links)
     {
-        $config = $this->get_config();
         foreach ($links as $link) {
-            if (!in_array($link, $config->stylesheets)) {
-                $config->stylesheets[] = $link;
-            }
+            $this->page->requires->css($link);
         }
     }
 

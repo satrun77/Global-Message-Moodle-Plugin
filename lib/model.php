@@ -14,9 +14,17 @@ defined('INTERNAL_ACCESS') or die;
 abstract class moo_globalmessage_model
 {
     protected $globalmessage;
-
+    /**
+     *
+     * @var moodle_database
+     */
+    protected $db;
+   
     public function __construct(moo_globalmessage $base)
     {
+        global $DB;
+        
+        $this->db = $DB;
         $this->globalmessage = $base;
     }
 

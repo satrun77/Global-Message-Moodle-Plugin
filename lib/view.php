@@ -18,11 +18,15 @@ class moo_globalmessage_view
     protected $globalmessage;
     protected $layout = true;
     protected $data = array();
-
+    protected $output;
+    
     public function __construct(moo_globalmessage $base)
     {
+        global $OUTPUT;
+
         $this->globalmessage = $base;
         $this->data['version'] = $this->globalmessage->get_version();
+        $this->output = $OUTPUT;
     }
 
     /**
@@ -45,18 +49,18 @@ class moo_globalmessage_view
     public function render($view)
     {
         if ($this->layout) {
-            admin_externalpage_print_header();
+            echo $this->output->header();
         }
 
         if ($this->pageheading != '') {
-            print_heading($this->pageheading, 'left', 2);
+            echo $this->output->heading($this->pageheading, 2);
         }
 
         include_once $this->globalmessage->get_basedir('views/' . $view . '.php');
 
         if ($this->layout) {
-            admin_externalpage_print_footer();
-        }
+            echo $this->output->footer();
+        }        
     }
 
     /**
@@ -70,8 +74,8 @@ class moo_globalmessage_view
     {
         $this->merge_view_data($data);
         ob_start();
-        include_once $this->globalmessage->get_basedir('views/' . $view . '.php');
-        return ob_get_clean();
+        include $this->globalmessage->get_basedir('views/' . $view . '.php');
+        return ob_get_clean();        
     }
 
     /**
@@ -118,7 +122,9 @@ class moo_globalmessage_view
      */
     protected function get_themename()
     {
-        return current_theme();
+        global $PAGE;
+
+        return $PAGE->theme->name;
     }
 
     /**
@@ -127,8 +133,11 @@ class moo_globalmessage_view
      * @param string $path
      * @return string
      */
-    public function base_url($path = '')
+    public function base_url($path = '', $relative = false)
     {
+        if ($relative) {
+            return '/local/globalmessage/' . $path;
+        }
         return $this->get_config()->wwwroot . '/local/globalmessage/' . $path;
     }
 
@@ -150,7 +159,7 @@ class moo_globalmessage_view
      */
     public function print_table($table)
     {
-        print_table((object) $table);
+        return html_writer::table($table);
     }
 
     /**
@@ -164,7 +173,7 @@ class moo_globalmessage_view
     public function print_paging_bar($count, $page = 1, $perpage = 20, $url = '')
     {
         $url .= "?perpage=" . $perpage . "&amp;";
-        print_paging_bar($count, $page, $perpage, $url);
+        return $this->output->paging_bar($count, $page, $perpage, $url);
     }
 
     /**
@@ -221,14 +230,20 @@ class moo_globalmessage_view
             'disabled' => false,
             'tabindex' => 0,
             'listbox' => false,
-            'multiple' => false,
+            'multi' => false,
             'class' => '',
             'selected' => ''
         );
         $attribs = array_merge($defaultoptions, $attribs);
 
-        return choose_from_menu($options, $name, $attribs['selected'], $attribs['nothing'], $attribs['script'], $attribs['nothingvalue'],
-                true, $attribs['disabled'], $attribs['tabindex'], $name, $attribs['listbox'], $attribs['multiple'], $attribs['class']);
+        $attributes = array();
+        $attributes['disabled'] = $attribs['disabled'];
+        $attributes['tabindex'] = $attribs['tabindex'];
+        $attributes['multi'] = $attribs['multi'];
+        $attributes['class'] = $attribs['class'];
+        $attributes['id'] = $name;
+
+        return html_writer::select($options, $name, $attribs['selected'], array($attribs['nothingvalue'] => $attribs['nothing']), $attributes);
     }
 
     protected function get_user()
