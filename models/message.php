@@ -8,7 +8,7 @@ defined('INTERNAL_ACCESS') or die;
  * @subpackage globalmessage
  * @copyright  2011 Mohamed Alsharaf
  * @author     Mohamed Alsharaf (mohamed.alsharaf@gmail.com)
- * @version    1.0.0
+ * @version    2.0.0
  * @license    http://www.gnu.org/copyleft/gpl.html
  */
 class moo_globalmessage_model_message extends moo_globalmessage_model
@@ -85,7 +85,7 @@ class moo_globalmessage_model_message extends moo_globalmessage_model
         foreach ($messages as $message) {
             // skip the message if the current user has seen it
             if (isset($options['user']->globalmessage) && in_array($message->id, $options['user']->globalmessage)) {
-               // continue;
+                continue;
             }
             // check rules if ok return and stop
             if ($messagerule->check_message_rules($message, $options)) {

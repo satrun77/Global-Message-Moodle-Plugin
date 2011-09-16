@@ -8,7 +8,7 @@ defined('INTERNAL_ACCESS') or die;
  * @subpackage globalmessage
  * @copyright  2011 Mohamed Alsharaf
  * @author     Mohamed Alsharaf (mohamed.alsharaf@gmail.com)
- * @version    1.0.0
+ * @version    2.0.0
  * @license    http://www.gnu.org/copyleft/gpl.html
  */
 abstract class moo_globalmessage_model

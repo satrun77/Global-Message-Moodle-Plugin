@@ -4,7 +4,7 @@ Author:    Mohamed Alsharaf (mohamed.alsharaf@gmail.com)
 Website:   http://jamandcheese-on-phptoast.com
 Copyright: 2011-2012 Mohamed Alsharaf
 License:   http://www.gnu.org/copyleft/gpl.html
-Version:   2.0.0
+Version:   2.0.1
 
 == Changelog: ==
 2.0.0 - First version for Moodle 2.1
