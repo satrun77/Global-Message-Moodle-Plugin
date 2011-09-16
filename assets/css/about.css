@@ -1,3 +1,7 @@
+#gm-about-tab div.yui3-tabview-panel {
+    display: block;
+}
+
 #middle-column {
     font:13px/1.231 arial,helvetica,clean,sans-serif;
     *font-size:small;
@@ -10,6 +14,7 @@ table {
     font-size:inherit;
     font:100%;
 }
+
 pre,code,kbd,samp,tt {
     font-family:monospace;
     *font-size:108%;
@@ -23,6 +28,7 @@ pre,code,kbd,samp,tt {
     margin: 8px 0;
     padding: 0 0 0 25px;
 }
+
 #gm-about-tab .yui-content ul li {
     margin: 3px 0;
 }
@@ -103,19 +109,9 @@ pre,code,kbd,samp,tt {
     overflow: hidden;
 }
 .yui-skin-sam .yui-navset .yui-nav a, .yui-skin-sam .yui-navset .yui-navset-top .yui-nav a {
-    background: url("../../../../lib/yui/2.8.2/build/assets/skins/sam/sprite.png") repeat-x scroll 0 0 #D8D8D8;
-    border-color: #243356;
-    border-style: solid;
     border-width: 1px 1px 0;
     color: #000000;
     font-size: 85%;
     padding: 0.3em 0.75em;
     text-decoration: none;
-}
-.yui-skin-sam .yui-navset .yui-nav .yui3-tab-selected  a{
-    border-color: #243356;
-}
-.yui-skin-sam .yui-navset .yui-nav .yui3-tab-selected  a, .yui-skin-sam .yui-navset .yui-nav .yui3-tab-selected  a:focus, .yui-skin-sam .yui-navset .yui-nav .yui3-tab-selected  a:hover {
-    background: url("../../../../lib/yui/2.8.2/build/assets/skins/sam/sprite.png") repeat-x scroll left -1400px #2647A0;
-    color: #FFFFFF;
 }
