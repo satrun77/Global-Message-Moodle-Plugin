@@ -14,7 +14,7 @@
         <FIELD NAME="bgimage" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" PREVIOUS="bgcolor" NEXT="bgimageposition"/>
         <FIELD NAME="bgimageposition" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="bgimage" NEXT="bgimagerepeat"/>
         <FIELD NAME="bgimagerepeat" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" PREVIOUS="bgimageposition" NEXT="bordersize"/>
-        <FIELD NAME="bordersize" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" DEDEFAULT="0" PREVIOUS="bgimagerepeat" NEXT="bordercolor"/>
+        <FIELD NAME="bordersize" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" DEFAULT="0" PREVIOUS="bgimagerepeat" NEXT="bordercolor"/>
         <FIELD NAME="bordercolor" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" PREVIOUS="bordersize" NEXT="bordershape"/>
         <FIELD NAME="bordershape" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" PREVIOUS="bordercolor" NEXT="padding"/>
         <FIELD NAME="padding" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="bordershape" NEXT="innerpadding"/>
