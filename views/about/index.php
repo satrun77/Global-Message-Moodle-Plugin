@@ -86,10 +86,9 @@
             <p><?php echo $this->get_string('uninstall1'); ?></p>
             <ol>
                 <li><?php echo $this->get_string('uninstall2'); ?></li>
-                <li><?php echo $this->get_string('uninstall3'); ?><?php echo highlight_string("<?php
-include_once \$CFG->dirroot . '/local/globalmessage/lib/base.php';
+                <li><?php echo $this->get_string('uninstall3'); ?><?php echo highlight_string("include_once \$CFG->dirroot . '/local/globalmessage/lib/base.php';
 moo_globalmessage::show_message();
-?>", true); ?></li>
+", true); ?></li>
             </ol>
         </div>
     </div>

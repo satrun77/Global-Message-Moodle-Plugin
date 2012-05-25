@@ -170,7 +170,7 @@ class moo_globalmessage_controller_index extends moo_globalmessage_controller
             die;
         }
         $jsondata = array('error' => 0);
-        $rules = optional_param('gmrules', '-1', PARAM_TEXT);
+        $rules = optional_param_array('gmrules', '-1', PARAM_TEXT);
         $messageid = optional_param('messageid', '-1', PARAM_INT);
         if (is_array($rules) && !empty($rules) && $messageid > 0) {
             $jsondata['message'] = $this->get_string('rulessaved');
