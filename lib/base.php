@@ -8,12 +8,12 @@ define('INTERNAL_ACCESS', 1);
  * @subpackage globalmessage
  * @copyright  2011 Mohamed Alsharaf
  * @author     Mohamed Alsharaf (mohamed.alsharaf@gmail.com)
- * @version    2.0.1
+ * @version    2.0.2
  * @license    http://www.gnu.org/copyleft/gpl.html
  */
 class moo_globalmessage
 {
-    private $version = '2.0.1';
+    private $version = '2.0.2';
     protected $user;
     protected $config;
     protected $course;
@@ -277,7 +277,7 @@ class moo_globalmessage
         $tables = array();
 
         // globalmessages table
-        $table = new XMLDBTable('globalmessages');
+        $table = new XMLDBTable('local_globalmessages');
         $table->addFieldInfo('id', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, XMLDB_SEQUENCE, null, null, null);
         $table->addFieldInfo('name', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, null, null);
         $table->addFieldInfo('summary', XMLDB_TYPE_CHAR, '255', null, null, null, null, null, null);
@@ -297,7 +297,7 @@ class moo_globalmessage
         $tables[] = $table;
 
         // globalmessages_designs table
-        $table = new XMLDBTable('globalmessages_designs');
+        $table = new XMLDBTable('local_globalmessages_designs');
         $table->addFieldInfo('id', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, XMLDB_SEQUENCE, null, null, null);
         $table->addFieldInfo('name', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, null, null);
         $table->addFieldInfo('height', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, null, null, 400);
@@ -315,7 +315,7 @@ class moo_globalmessage
         $tables[] = $table;
 
         // globalmessages_rules table
-        $table = new XMLDBTable('globalmessages_rules');
+        $table = new XMLDBTable('local_globalmessages_rules');
         $table->addFieldInfo('id', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, XMLDB_SEQUENCE, null, null, null);
         $table->addFieldInfo('construct', XMLDB_TYPE_CHAR, '10', null, XMLDB_NOTNULL, null, null, null, null);
         $table->addFieldInfo('leftside', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, null, null);

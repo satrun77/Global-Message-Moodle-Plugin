@@ -105,7 +105,7 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
 
     public function fetch_rules_bymessage($messageid)
     {
-        $records = $this->db->get_records('globalmessages_rules', array('message'=> $messageid), 'id ASC');
+        $records = $this->db->get_records('local_globalmessages_rules', array('message'=> $messageid), 'id ASC');
         if ($records) {
             return $records;
         }
@@ -121,7 +121,7 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
         }
 
         // remove existing rules
-        $this->db->delete_records('globalmessages_rules', array('message'=> $message->id));
+        $this->db->delete_records('local_globalmessages_rules', array('message'=> $message->id));
         
         // filter, validate, and then insert the new rules
         foreach ($rules as $key => $rule) {
@@ -134,7 +134,7 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
                     'rightside' => $filteredrule[3],
                     'message' => $message->id
                 );
-                $this->db->insert_record('globalmessages_rules', (object) $rulesdata);
+                $this->db->insert_record('local_globalmessages_rules', (object) $rulesdata);
             }
         }
 

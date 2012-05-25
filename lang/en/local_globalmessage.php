@@ -141,5 +141,5 @@ $string['copyright'] = 'Copyright';
 $string['license'] = 'License';
 $string['uninstall1'] = 'Steps to un-install the plugin';
 $string['uninstall2'] = 'Go to Site Administration --> Plugins --> Manage local plugins and click delete to remove the pluing.';
-$string['uninstall3'] = 'Open your theme layout and make sure you remove the globalmessage code from the bottom of the file.';
+$string['uninstall3'] = 'Open the file renderers.php in your theme folder and remove the following 2 lines of code.';
 $string['globalmessage:isadminrole'] = 'Global message can be disabled for a user with this capability.';
