@@ -186,7 +186,7 @@ class moo_globalmessage
         $me->grab_moodle_globals();
         $context = get_context_instance(CONTEXT_COURSE, SITEID);
 
-        $admin->add('frontpage', new admin_category('globalmessage', $me->get_string('globalmessage')));
+        $admin->add('localplugins', new admin_category('globalmessage', $me->get_string('globalmessage')));
         $admin->add('globalmessage', new admin_externalpage('globalmessagemanage', $me->get_string('globalmessagemanage'), $me->get_config('wwwroot') . '/local/globalmessage/index.php?id=' . SITEID, 'moodle/site:config', false, $context));
         $admin->add('globalmessage', new admin_externalpage('globalmessageabout', $me->get_string('globalmessageabout'), $me->get_config('wwwroot') . '/local/globalmessage/index.php?action=about&id=' . SITEID, 'moodle/site:config', false, $context));
 
@@ -203,7 +203,7 @@ class moo_globalmessage
      *
      * @return void
      */
-    public function show_message()
+    public static function show_message()
     {
         $me = new self();
         $me->grab_moodle_globals();

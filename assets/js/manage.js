@@ -508,7 +508,7 @@ globalmessage.designdialog = function() {
                         } ]
                     } );
                     confirmDialog.setHeader(globalmessage.string('confirmtitle'));
-                    confirmDialog.render("middle-column");
+                    confirmDialog.render("page");
                     confirmDialog.show();
                 }
             }
