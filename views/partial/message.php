@@ -17,7 +17,7 @@
     </div>
 </div>
 <?php elseif($this->message): ?>
-<div id="gm-message-popup" style="<?php echo $this->message_outter_styles($this->message); ?>">
+<div style="<?php echo $this->message_outter_styles($this->message); ?>" id="gm-message-popup">
     <div>
         <a class="gm-close" style="margin-bottom: 5px;margin-top: 4px;float:right;padding: 3px 6px;background: url(<?php echo $this->base_url('assets/img/close.gif'); ?>) no-repeat scroll 0 0px transparent;cursor: pointer;height: 9px;width: 17px;overflow: hidden;text-decoration: none;text-indent: -999999px;" href="javascript:;" onclick="document.getElementById('gm-message-popup').style.display='none';">[x]</a>
         <div id="gm-message-inner" style="<?php echo $this->message_inner_styles($this->message); ?>"><?php echo $this->message->description; ?></div>

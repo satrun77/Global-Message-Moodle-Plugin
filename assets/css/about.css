@@ -46,7 +46,7 @@ pre,code,kbd,samp,tt {
 #gm-about-tab pre {
     margin-top: 0px;
 }
-#gm-general, #gm-installation, #gm-rule-plugin, #gm-author, #gm-uninstall {
+#gm-general, #gm-installation, #gm-rule-plugin, #gm-author, #gm-uninstall, #gm-manage-plugin {
     margin: 10px 0;
 }
 #gm-version {

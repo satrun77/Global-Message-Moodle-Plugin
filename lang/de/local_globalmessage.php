@@ -144,3 +144,4 @@ $string['uninstall3'] = 'Entfernen Sie den Code von /local/db/upgrade.php, der m
 $string['uninstall4'] = 'Entfernen Sie den Code vom footer.html Ihrer Theme-Datei, der mit der Globalen Nachricht zu tun hat.';
 $string['uninstall5'] = 'Entfrenen Sie 3 Datenbank Tabellen (globalmessages, globalmessages_rules, und globalmessages_designs) und entfernen Sie die allgemeinen Einstellungen des Plugins (globalmessageenable, globalmessagedisableforadminrole, und globalmessagedisableforadminpage) von der konfigurierten Datenbank Tabelle.';
 $string['uninstall6'] = 'Entfernen Sie optional /local/globalmessage/';
+$string['managerules'] = 'Verwalten Regeln';

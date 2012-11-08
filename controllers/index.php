@@ -29,7 +29,8 @@ class moo_globalmessage_controller_index extends moo_globalmessage_controller
             'requires' => array('base', 'cssfonts', 'yui2-json', 'node', 'overlay', 'event', 'io', 'yui2-button', 'yui2-calendar', 'yui2-container', 'yui2-connection', 'yui2-animation', 'yui2-element')
         ));
         $this->head_script(array(
-            $this->view->base_url('assets/js/yui-selector.js', true)
+            $this->view->base_url('assets/js/yui-selector.js', true),
+            $this->view->base_url('assets/js/base.js', true)
         ));
 
         $page = optional_param('page', 0, PARAM_INT);
@@ -55,7 +56,7 @@ class moo_globalmessage_controller_index extends moo_globalmessage_controller
 
         $rule = $this->model('messagerule');
         $this->view->rule_statments = $rule->get_constructs();
-        $this->view->rule_leftsides = $rule->get_leftsides();
+        $this->view->rule_leftsides = $rule->get_leftside_names(true);
         $this->view->rule_operators = $rule->get_operators();
 
         $this->view->designform = $this->form('design', array(

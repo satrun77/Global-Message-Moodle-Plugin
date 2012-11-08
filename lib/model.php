@@ -38,9 +38,4 @@ abstract class moo_globalmessage_model
     {
         return $this->globalmessage->model($name);
     }
-
-    protected function table_name($name)
-    {
-        return $this->globalmessage->get_config('prefix') . $name;
-    }
 }

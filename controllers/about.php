@@ -26,9 +26,54 @@ class moo_globalmessage_controller_about extends moo_globalmessage_controller
         $this->head_module_script(array(
             'name' => 'moo_gm',
             'fullpath' => 'about.js',
-            'requires' => array('base', 'cssfonts', 'tabview')
+            'requires' => array('base', 'cssfonts', 'tabview', 'yui2-json', 'node', 'overlay', 'event', 'io', 'yui2-button', 'yui2-container', 'yui2-connection', 'yui2-animation', 'yui2-element')
         ));
+        $this->head_script(array(
+            $this->view->base_url('assets/js/yui-selector.js', true),
+            $this->view->base_url('assets/js/base.js', true)
+        ));
+        
         $this->view->ruletemplate = $this->get_rule_template();
+
+        $this->view->rules = $this->model('messagerule')->get_leftsides();
+    }
+
+    public function removecustomrule_action()
+    {
+        if (!$this->is_ajax()) {
+            die;
+        }
+
+        $rule = optional_param('rule', '', PARAM_TEXT);
+        if ($rule == '') {
+            die;
+        }
+
+        $uninstall = $this->model('messagerule')->uninstall_customrule($rule);
+        if (!$uninstall) {
+            return $this->ajax_return(array('message' => $this->get_string('customruleerror1', $rule)), true);
+        }
+
+        $this->ajax_return(array('message' => $this->get_string('customruledeleted', $rule)));
+    }
+
+    public function installcustomrule_action()
+    {
+        if (!$this->is_ajax()) {
+            die;
+        }
+
+        $rule = optional_param('rule', '', PARAM_TEXT);
+        if ($rule == '') {
+            die;
+        }
+
+        $uninstall = $this->model('messagerule')->install_customrule($rule);
+        if (!$uninstall) {
+            return $this->ajax_return(array('message' => $this->get_string('customruleerror2', $rule)), true);
+        }
+
+        $this->ajax_return(array('message' => $this->get_string('customruleinstalled', $rule)));
     }
 
     protected function get_rule_template()
@@ -38,22 +83,76 @@ defined('INTERNAL_ACCESS') or die;
 
 class moo_globalmessage_model_rule_{uniqe_name} implements moo_globalmessage_model_rule_ruleinterface {
 
-    public function validate()
+    /**
+     * Rule logic
+     * 
+     * @param array \$options
+     *               <code>
+     *               \$options = array(
+     *                              'user'   => \$USER,
+     *                              'course' => \$COURSE,
+     *                              'time'   => // current time used in comparison,
+     *                              'message'=> // global message object,);
+     *               </code>
+     * @return string 'true' or 'false'
+     */
+    public function validate(\$options = null)
     {
        // valdation logic here...
        // return string 'true' or 'false'
        return 'true';
     }
 
+    /**
+     * Display name
+     * 
+     * @return string
+     */
     public function get_name()
     {
         return '{Rule Display Text}';
     }
 
+    /**
+     * unique name of your class
+     * moo_globalmessage_model_rule_[key name]
+     * 
+     * @return string
+     */
     public function get_keyname()
     {
         return '{uniqe_name}';
     }
+
+     /**
+     * Whether or not the rule plugin installed
+      * 
+     * @return boolean
+     */
+    public function is_installed()
+    {
+    
+    }
+
+    /**
+     * Install database changes
+     * 
+     * @return boolean
+      */
+     public function install()
+     {
+     
+     }
+ 
+     /**
+     * Uninstall database changes
+      * 
+     * @return boolean
+      */
+     public function uninstall()
+     {
+     
+     }
 }";
     }
 }

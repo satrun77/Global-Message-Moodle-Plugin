@@ -67,7 +67,7 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
                 $pluginclass = 'moo_globalmessage_model_rule_' . $file->getBasename('.php');
                 $class = new $pluginclass();
                 if ($class instanceof moo_globalmessage_model_rule_ruleinterface) {
-                    $this->leftside['code_' . $class->get_keyname()] = $class->get_name();
+                    $this->leftside['code_' . $class->get_keyname()] = $class;
                 }
             }
         }
@@ -76,6 +76,21 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
     public function get_leftsides()
     {
         return $this->leftside;
+    }
+
+    public function get_leftside_names($onlyactive = false)
+    {
+        $return = array();
+        foreach ($this->leftside as $name => $rule) {
+            if ($rule instanceof moo_globalmessage_model_rule_ruleinterface) {
+                if (!$onlyactive || $rule->is_installed()) {
+                    $return[$name] = $rule->get_name();
+                }
+            } else {
+                $return[$name] = $rule;
+            }
+        }
+        return $return;
     }
 
     public function get_operators()
@@ -95,7 +110,18 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
 
     public function get_leftside($value)
     {
-        return isset($this->leftside[$value]) ? $this->leftside[$value] : '';
+        if (!isset($this->leftside[$value])) {
+            return '';
+        }
+
+        if (!is_object($this->leftside[$value])) {
+            return (string) $this->leftside[$value];
+        }
+
+        if (!$this->leftside[$value] instanceof moo_globalmessage_model_rule_ruleinterface) {
+            return '';
+        }
+        return $this->leftside[$value]->get_name();
     }
 
     public function get_operator($value)
@@ -122,7 +148,7 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
 
         // remove existing rules
         $this->db->delete_records('local_globalmessages_rules', array('message'=> $message->id));
-        
+
         // filter, validate, and then insert the new rules
         foreach ($rules as $key => $rule) {
             $filteredrule = $this->filter_rule_fordb($rule, $key);
@@ -257,6 +283,9 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
 
     public function check_message_rules($message, $options)
     {
+        // options is accessible by moo_globalmessage_model_rule_ruleinterface
+        $options['message'] = $message;
+
         // get all of the message rules
         $rules = $this->fetch_rules_bymessage($message->id);
         if (!$rules) {
@@ -307,20 +336,22 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
         } else if ($this->is_date($leftside)) {
             return isset($options['time']) ? (int) $options['time'] : false;
         } else if ($this->is_plugincallback($leftside)) {
-            return $this->get_plugincallback_value($leftside);
+            return $this->get_plugincallback_value($leftside, $options);
         }
 
         return false;
     }
 
-    protected function get_plugincallback_value($leftside)
+    protected function get_plugincallback_value($leftside, $options)
     {
         $pluginname = substr($leftside, 5);
         $pluginclass = 'moo_globalmessage_model_rule_' . $pluginname;
         $this->globalmessage->load_file('models/rule/' . $pluginname . '.php');
-        if (class_exists($pluginclass)) {
-            $class = new $pluginclass();
-            return $class->validate();
+        $class = new $pluginclass();
+        if (class_exists($pluginclass)
+                && $class instanceof moo_globalmessage_model_rule_ruleinterface
+                && $class->is_installed()) {
+            return $class->validate($options);
         }
         return false;
     }
@@ -381,5 +412,37 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
         }
 
         return false;
+    }
+
+    public function uninstall_customrule($rule)
+    {
+        if (!isset($this->leftside[$rule])) {
+            return false;
+        }
+
+        if (!$this->leftside[$rule]->is_installed()) {
+            return true;
+        }
+
+        // execute uninstall to remove any database changes
+        if (!$this->leftside[$rule]->uninstall()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function install_customrule($rule)
+    {
+        if (!isset($this->leftside[$rule])) {
+            return false;
+        }
+
+        if ($this->leftside[$rule]->is_installed()) {
+            return true;
+        }
+
+        // execute uninstall to remove any database changes
+        return $this->leftside[$rule]->install();
     }
 }

@@ -112,8 +112,6 @@ pre,code,kbd,samp,tt {
     color:#000 !important;
 }
 #gm-add-rule {
-    background: url("../../../../lib/yui/2.8.2/build/assets/skins/sam/sprite.png") repeat-x scroll 0 0 #2647A0 !important;
-    border: 1px solid #000000;
     margin: 0 !important;
     padding: 0 !important;
 }

@@ -8,12 +8,12 @@ define('INTERNAL_ACCESS', 1);
  * @subpackage globalmessage
  * @copyright  2011 Mohamed Alsharaf
  * @author     Mohamed Alsharaf (mohamed.alsharaf@gmail.com)
- * @version    2.0.2
+ * @version    2.1.0
  * @license    http://www.gnu.org/copyleft/gpl.html
  */
 class moo_globalmessage
 {
-    private $version = '2.0.2';
+    private $version = '2.1.0';
     protected $user;
     protected $config;
     protected $course;

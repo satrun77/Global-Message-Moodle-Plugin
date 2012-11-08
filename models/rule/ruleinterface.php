@@ -17,9 +17,17 @@ interface moo_globalmessage_model_rule_ruleinterface
     /**
      * Rule logic
      * 
+     * @param array $options
+     *               <code>
+     *               $options = array(
+     *                              'user'   => $USER,
+     *                              'course' => $COURSE,
+     *                              'time'   => // current time used in comparison,
+     *                              'message'=> // global message object,);
+     *               </code>
      * @return string 'true' or 'false'
      */
-    public function validate();
+    public function validate($options = null);
 
     /**
      * Display name
@@ -35,4 +43,25 @@ interface moo_globalmessage_model_rule_ruleinterface
      * @return string
      */
     public function get_keyname();
+
+     /**
+     * Whether or not the rule plugin installed
+      * 
+     * @return boolean
+     */
+    public function is_installed();
+
+    /**
+     * Install database changes
+     * 
+     * @return boolean
+      */
+     public function install();
+ 
+     /**
+     * Uninstall database changes
+      * 
+     * @return boolean
+      */
+     public function uninstall();
 }

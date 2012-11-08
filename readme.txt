@@ -4,7 +4,7 @@ Author:    Mohamed Alsharaf (mohamed.alsharaf@gmail.com)
 Website:   http://jamandcheese-on-phptoast.com
 Copyright: 2011-2012 Mohamed Alsharaf
 License:   http://www.gnu.org/copyleft/gpl.html
-Version:   2.0.4
+Version:   2.1.0
 
 == Changelog: ==
 2.0.0 - First version for Moodle 2.1
@@ -13,6 +13,17 @@ Version:   2.0.4
 2.0.3 - Fixed database table names
       - Minor bug fixes
 2.0.4 - Minor bug fixes
+2.1.0 - New section under 'Info' to manage custom rules. Install/Uninstall custom rules.
+      - Style sheet modifications
+      - JavaScript modifications & extract shared code into a separate file base.js
+      - Custom rules class interface modifications
+        - New Methods:
+            - public function is_installed();
+            - public function install();
+            - public function uninstall();
+        - Method definition changes from validate() to validate($options = null)  
+      - Language string modifications.
+      - Removed unused code.
 
 == Installation ==
 1. Copy and paste the folder globalmessage into the local directory. If you don't have a local directory then create one in the Moodle root folder.
@@ -42,7 +53,6 @@ class theme_[theme name]_core_renderer extends core_renderer
 
 9. Replace [theme name] with the name of your theme.
 10. If the file renderers.php exists in your theme then place the following code before the last '}' of the theme core renderer "theme_[theme name]_core_renderer" if exists.
-If the theme core renderer does not exists in the file, then place the code in step 8 at the top of the file after <?php
     public function standard_end_of_body_html() {
         global $CFG;
 
@@ -51,6 +61,7 @@ If the theme core renderer does not exists in the file, then place the code in s
 
         return parent::standard_end_of_body_html();
     }
+10. If the theme core renderer does not exists in the file, then place the code in step 8 at the top of the file after <?php
 
 == Upgrade ==
 
