@@ -74,3 +74,9 @@ class theme_[theme name]_core_renderer extends core_renderer
 3. Go to the notifications page to upgrade this plugin.
 
 4. Enable global message.
+
+== Thank You for your contribution ==
+
+- Spanish translation (By the Moodler "Nacho Aguilar")
+- German translation (By the Moodler "Joachim Vogelgesang")
+- Portuguese/Brazil translation (By the Moodler "felipe camboa")
