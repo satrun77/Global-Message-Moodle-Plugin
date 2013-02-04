@@ -1,4 +1,4 @@
-var loading, globalmessage = {};
+var loading, globalmessage = {}, Y;
 globalmessage.select = function(select) {
     var loopOptions;
     loopOptions = function(callback) {
@@ -11,7 +11,7 @@ globalmessage.select = function(select) {
         return false;
     };
     this.add = function(option) {
-        if (YAHOO.env.ua.gecko > 0) {
+        if (Y.YUI2.env.ua.gecko > 0) {
             select.add(option, null);
         } else {
             select.add(option, select.length);
@@ -67,9 +67,9 @@ globalmessage.select = function(select) {
     return this;
 };
 globalmessage.string = function(name) {
-    var t = YAHOO.util.Selector.query("input[name^="+name+"]", 'gm-strings', true);
-    if (typeof t == 'object') {
-        return t.value;
+    var t = Y.one("#gm-strings input[name^="+name+"]");
+    if (t != null) {
+        return t.get('value');
     }
     return '';
 };
@@ -77,7 +77,7 @@ globalmessage.alternatetablerows = function(el) {
     var rows = document.getElementById(el).getElementsByTagName('tr');
     for (var i=0; i<rows.length; i++) {
         var className = ('r' + (i%2? 1 : 0));
-        YAHOO.util.Dom.addClass(rows[i], className); 
+        Y.YUI2.util.Dom.addClass(rows[i], className); 
     }
 };
 globalmessage.dialog = function() {
@@ -107,9 +107,9 @@ globalmessage.dialog = function() {
     };
     this.render = function() {
         // Remove progressively enhanced content class, just before creating the module
-        YAHOO.util.Dom.removeClass(this.elementid, "yui-pe-content");
+        Y.YUI2.util.Dom.removeClass(this.elementid, "yui-pe-content");
         // Instantiate the Dialog
-        this.dialog = new YAHOO.widget.Dialog(this.elementid,
+        this.dialog = new Y.YUI2.widget.Dialog(this.elementid,
         {
             modal: false,
             width : this.width,
@@ -140,12 +140,12 @@ globalmessage.dialog = function() {
         this.dialog.callback = {
             success: function(o) {
                 loading.hide();
-                var response = YAHOO.lang.JSON.parse(o.responseText);
+                var response = Y.YUI2.lang.JSON.parse(o.responseText);
                 self.handleSuccess(response, o);
             },
             failure: function(o) {
                 loading.hide();
-                var response = YAHOO.lang.JSON.parse(o.responseText);
+                var response = Y.YUI2.lang.JSON.parse(o.responseText);
                 if (!self.handleFailure(response, o)) {
                     alert(globalmessage.string('failedajax'));
                 }
@@ -153,7 +153,7 @@ globalmessage.dialog = function() {
         };
         this.dialog.render();
         this.dialog.center();
-        var dialogel = YAHOO.util.Dom.get(this.elementid+'_c');
+        var dialogel = Y.YUI2.util.Dom.get(this.elementid+'_c');
         if (parseInt(dialogel.style.top) < 0) {
             dialogel.style.top = '0px';
         }
@@ -178,15 +178,15 @@ globalmessage.ajax = function(options) {
         };
     }
     loading.show();
-    YAHOO.util.Connect.asyncRequest('GET', options.url, {
+    Y.YUI2.util.Connect.asyncRequest('GET', options.url, {
         success: function(o) {
             loading.hide();
-            var response = YAHOO.lang.JSON.parse(o.responseText);
+            var response = Y.YUI2.lang.JSON.parse(o.responseText);
             options.success(response, o);
         },
         failure: function(o) {
             loading.hide();
-            var response = YAHOO.lang.JSON.parse(o.responseText);
+            var response = Y.YUI2.lang.JSON.parse(o.responseText);
             if (!options.failure(response, o)) {
                 alert(globalmessage.string('failedajax'));
             }
@@ -194,12 +194,13 @@ globalmessage.ajax = function(options) {
     }, null);
 };
 globalmessage.highlightRow = function(row, type) {
-    var tds = row.getElementsByTagName('td');
-    for (var i = 0; i < tds.length; i++) {
+    var tds = row.all('td');
+    
+    tds.each(function (item) {
         if (type) {
-            tds[i].style.backgroundColor = '#EDFF8C';
+            item.setStyle('backgroundColor', '#EDFF8C');
         } else {
-            tds[i].style.backgroundColor = '';
+            item.setStyle('backgroundColor', '');
         }
-    }
+    });
 };

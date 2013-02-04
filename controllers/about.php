@@ -29,7 +29,6 @@ class moo_globalmessage_controller_about extends moo_globalmessage_controller
             'requires' => array('base', 'cssfonts', 'tabview', 'yui2-json', 'node', 'overlay', 'event', 'io', 'yui2-button', 'yui2-container', 'yui2-connection', 'yui2-animation', 'yui2-element')
         ));
         $this->head_script(array(
-            $this->view->base_url('assets/js/yui-selector.js', true),
             $this->view->base_url('assets/js/base.js', true)
         ));
         

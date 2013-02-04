@@ -1,6 +1,6 @@
 M.moo_gm = {};
 globalmessage.installcustomrule = function(ruleid) {
-    var row = YAHOO.util.Selector.query('.customrule-'+ruleid, 'gm-table', true);
+    var row = Y.one('#gm-table .customrule-'+ruleid);
     globalmessage.highlightRow(row, true);
     globalmessage.ajax({
         url: 'index.php?action=about/installcustomrule&rule='+ruleid,
@@ -15,7 +15,7 @@ globalmessage.installcustomrule = function(ruleid) {
 };
 globalmessage.removecustomrule = function(ruleid) {
     var actionYes, actionNo;
-    var row = YAHOO.util.Selector.query('.customrule-'+ruleid, 'gm-table', true);
+    var row = Y.one('#gm-table .customrule-'+ruleid);
     globalmessage.highlightRow(row, true);
     actionYes = function() {
         var dialog = this;
@@ -38,7 +38,7 @@ globalmessage.removecustomrule = function(ruleid) {
         globalmessage.highlightRow(row, false);
     };
     // Instantiate the Dialog
-    var confirmDialog = new YAHOO.widget.SimpleDialog("remove-customrule-dialog", {
+    var confirmDialog = new Y.YUI2.widget.SimpleDialog("remove-customrule-dialog", {
         width: "330px",
         fixedcenter: true,
         visible: false,
@@ -46,7 +46,7 @@ globalmessage.removecustomrule = function(ruleid) {
         close: true,
         modal: true,
         text: globalmessage.string('removecustomruletext'),
-        icon: YAHOO.widget.SimpleDialog.ICON_HELP,
+        icon: Y.YUI2.widget.SimpleDialog.ICON_HELP,
         constraintoviewport: true,
         buttons: [ {
             text:globalmessage.string('yes'),
@@ -65,7 +65,7 @@ globalmessage.removecustomrule = function(ruleid) {
 M.moo_gm.init = function(Y) {
     document.body.className += ' yui-skin-sam';
 
-    loading = new YAHOO.widget.Panel("gm-loading", {
+    loading = new Y.YUI2.widget.Panel("gm-loading", {
         width: "240px",
         fixedcenter: true,
         close: false,
