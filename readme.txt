@@ -4,7 +4,7 @@ Author:    Mohamed Alsharaf (mohamed.alsharaf@gmail.com)
 Website:   http://jamandcheese-on-phptoast.com
 Copyright: 2011-2012 Mohamed Alsharaf
 License:   http://www.gnu.org/copyleft/gpl.html
-Version:   1.4.1
+Version:   1.4.2
 
 == Changelog: ==
 1.0.0 - First version
@@ -17,6 +17,7 @@ Version:   1.4.1
 1.3.0 - Added German translation (By the Moodler "Joachim Vogelgesang")
 1.4.0 - Added Portuguese/Brazil translation (By the Moodler "felipe camboa")
 1.4.1 - Fixed bug in is_expired_rules(). The current time must be the first parameter for 'process_expression()'
+1.4.2 - Fixed typo in readme.txt file
 
 == Installation ==
 1. Copy and paste the folder globalmessage into the local directory. If you don't have a local directory then create one in the Moodle root folder.
@@ -30,7 +31,7 @@ Version:   1.4.1
 3. Locate the file /local/db/upgrade.php
     a. If the file does not exist, then 
         - Copy the file /local/globalmessage/upgrade.php into local/db/
-        - Copy the file /local/globalmessage/version.php inot local/db/
+        - Copy the file /local/globalmessage/version.php inot local/
 
     b. If the file exists, then
         - Copy the following code and paste it into the file /local/db/upgrade.php
