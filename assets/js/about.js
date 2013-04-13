@@ -6,8 +6,8 @@ globalmessage.installcustomrule = function(ruleid) {
         url: 'index.php?action=about/installcustomrule&rule='+ruleid,
         success: function(response, o) {
             globalmessage.highlightRow(row, false);
-            var a = row.getElementsByTagName('td')[2].getElementsByTagName('a')[0];
-            a.innerHTML = globalmessage.string('uninstall');
+            var a = Y.one('td a');
+            a.set('innerHTML', globalmessage.string('uninstall'));
             a.setAttribute('onclick', 'globalmessage.removecustomrule("'+ruleid+'");');
             alert(response.message);
         }
@@ -23,8 +23,8 @@ globalmessage.removecustomrule = function(ruleid) {
             url: 'index.php?action=about/removecustomrule&rule='+ruleid,
             success: function(response, o) {
                 if (response.error == 0) {
-                    var a = row.getElementsByTagName('td')[2].getElementsByTagName('a')[0];
-                    a.innerHTML = globalmessage.string('install');
+                    var a = Y.one('td a');
+                    a.set('innerHTML', globalmessage.string('install'));
                     a.setAttribute('onclick', 'globalmessage.installcustomrule("'+ruleid+'");');
                     dialog.hide();
                 }
@@ -62,7 +62,8 @@ globalmessage.removecustomrule = function(ruleid) {
     confirmDialog.show();
     globalmessage.highlightRow(row, true);
 };
-M.moo_gm.init = function(Y) {
+M.moo_gm.init = function(YUI) {
+    Y = YUI;
     document.body.className += ' yui-skin-sam';
 
     loading = new Y.YUI2.widget.Panel("gm-loading", {
@@ -76,13 +77,8 @@ M.moo_gm.init = function(Y) {
     loading.setHeader(globalmessage.string('loadingtext'));
     loading.setBody("<img src='" + globalmessage.string('loadingimg') + "' width='220px' height='19px'/>");
     loading.render(document.body);
-
-    YUI({
-        filter: 'raw'
-    }).use('tabview', function(Y) {
-        var tabview = new Y.TabView({
-            srcNode: '#gm-about-tab'
-        });
-        tabview.render();
-    });
 };
+
+YUI().use('yui2-tabview', function(Y) {
+    new Y.YUI2.widget.TabView('gm-about-tab');        
+});

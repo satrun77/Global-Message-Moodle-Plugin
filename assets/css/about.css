@@ -115,3 +115,6 @@ pre,code,kbd,samp,tt {
     padding: 0.3em 0.75em;
     text-decoration: none;
 }
+.yui-skin-sam .yui-navset .yui-nav a em {
+    border:0px none;
+}
