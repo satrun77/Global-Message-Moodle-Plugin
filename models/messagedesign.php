@@ -21,6 +21,7 @@ class moo_globalmessage_model_messagedesign extends moo_globalmessage_model
             $design->bgimageposition = unserialize($design->bgimageposition);
             $design->innerpadding = unserialize($design->innerpadding);
             $design->padding = unserialize($design->padding);
+            $design->designname = $design->name;
         }
         return $design;
     }
@@ -46,6 +47,7 @@ class moo_globalmessage_model_messagedesign extends moo_globalmessage_model
         $data->innerpadding = serialize($data->innerpadding);
         $data->padding = serialize($data->padding);
         $data->bgimageposition = serialize($data->bgimageposition);
+        $data->name = $data->designname;
 
         if (isset($data->designid) && $data->designid > 0) {
             $data->id = $data->designid;

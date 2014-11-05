@@ -184,7 +184,7 @@ class moo_globalmessage
     {
         $me = new self();
         $me->grab_moodle_globals();
-        $context = get_context_instance(CONTEXT_COURSE, SITEID);
+        $context = context_course::instance(SITEID);
 
         $admin->add('localplugins', new admin_category('globalmessage', $me->get_string('globalmessage')));
         $admin->add('globalmessage', new admin_externalpage('globalmessagemanage', $me->get_string('globalmessagemanage'), $me->get_config('wwwroot') . '/local/globalmessage/index.php?id=' . SITEID, 'moodle/site:config', false, $context));
@@ -221,7 +221,7 @@ class moo_globalmessage
 
         // dont show the message if the current user is admin
         // and globalmessagedisableforadminrole is true
-        $context = get_context_instance(CONTEXT_SYSTEM);
+        $context = context_system::instance();
         if ($me->get_config('globalmessagedisableforadminrole') && has_capability('local/globalmessage:isadminrole', $context)) {
             return;
         }

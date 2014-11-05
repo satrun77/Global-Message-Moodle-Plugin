@@ -18,12 +18,14 @@ class moo_globalmessage_form_design extends moo_globalmessage_form
     {
         $this->_form->addElement('hidden', 'designid', '', array('id' => 'designid'));
         $this->_form->addElement('hidden', 'actiontype', 'insert', array('id' => 'id_designactiontype'));
+        $this->_form->setType('designid', PARAM_INT);
+        $this->_form->setType('actiontype', PARAM_ALPHA);
 
         $this->_form->addElement('header', 'dimensions', $this->get_string('dimensions'));
 
-        $this->_form->addElement('text', 'name', $this->get_string('name'));
-        $this->_form->setType('name', PARAM_TEXT);
-        $this->_form->addRule('name', null, 'required', null, 'server');
+        $this->_form->addElement('text', 'designname', $this->get_string('name'));
+        $this->_form->setType('designname', PARAM_TEXT);
+        $this->_form->addRule('designname', null, 'required', null, 'server');
 
         $this->_form->addElement('text', 'width', $this->get_string('width'));
         $this->_form->setType('width', PARAM_INT);
@@ -81,7 +83,7 @@ class moo_globalmessage_form_design extends moo_globalmessage_form
         $this->_form->addElement('header', 'border', $this->get_string('border'));
 
         $this->_form->addElement('text', 'bordersize', $this->get_string('bordersize'));
-        $this->_form->setType('size', PARAM_INT);
+        $this->_form->setType('bordersize', PARAM_INT);
 
         $this->_form->addElement('text', 'bordercolor', $this->get_string('bordercolor'));
         $this->_form->setType('bordercolor', PARAM_TEXT);
@@ -105,8 +107,8 @@ class moo_globalmessage_form_design extends moo_globalmessage_form
     public function validation($data, $files)
     {
         $errors = array();
-        if ($data['name'] == '') {
-            $errors['name'] = $this->get_string('designerror2');
+        if ($data['designname'] == '') {
+            $errors['designname'] = $this->get_string('designerror2');
         }
 
         if ($data['width'] <= 0 || !is_numeric($data['width'])) {

@@ -47,7 +47,7 @@ abstract class moo_globalmessage_controller
 
         // setup admin page and check page permission
         admin_externalpage_setup($this->pagename);
-        $sitecontext = get_context_instance(CONTEXT_SYSTEM);
+        $sitecontext = context_system::instance();
         // You do not have the required permission to access this page.
         if (!has_capability('moodle/site:config', $sitecontext)) {
             print_error('pagepermission');

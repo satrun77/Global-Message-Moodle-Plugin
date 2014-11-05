@@ -18,6 +18,8 @@ class moo_globalmessage_form_message extends moo_globalmessage_form
     {
         $this->_form->addElement('hidden', 'id', '', array('id' => 'id_message'));
         $this->_form->addElement('hidden', 'actiontype', 'insert', array('id' => 'id_actiontype'));
+        $this->_form->setType('id', PARAM_INT);
+        $this->_form->setType('actiontype', PARAM_ALPHA);
 
         $this->_form->addElement('header', 'general', $this->get_string_fromcore('general'));
 
