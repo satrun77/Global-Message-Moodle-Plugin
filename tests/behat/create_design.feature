@@ -1,0 +1,57 @@
+@local @local_globalmessage
+Feature: Test creating a new message design & edit an exiting message design
+  As an admin
+  I should be able to create and edit message design
+
+  @javascript
+  Scenario: Create & edit message design
+    Given I log in as "admin"
+      And I navigate to "Messages" node in "Site administration > Plugins > Local plugins > Global Message"
+      And I press "Manage Message Designs"
+      And I expand all fieldsets
+      And I set the field "id_designname" to "Design 1"
+      And I set the field "id_padding_top" to "5"
+      And I set the field "id_padding_right" to "5"
+      And I set the field "id_padding_bottom" to "5"
+      And I set the field "id_padding_left" to "5"
+      And I set the field "id_innerpadding_top" to "10"
+      And I set the field "id_innerpadding_right" to "10"
+      And I set the field "id_innerpadding_bottom" to "10"
+      And I set the field "id_innerpadding_left" to "10"
+      And I set the field "id_bgcolor" to "yellow"
+      And I set the field "id_bordersize" to "1"
+      And I set the field "id_bordercolor" to "red"
+      And I set the field "id_bordershape" to "solid"
+      And I press "yui-gen2000004-button"
+      And I accept the currently displayed dialog
+      And I set the field "gmdesign_id" to "1"
+      And I press "gm-updatepreview-design-button"
+      And I press "gm-preview-design-button"
+     Then I should see "Remove Design"
+      And the "style" attribute of "#gm-message-popup" "css_element" should contain "background-color: yellow;"
+      And the "style" attribute of "#gm-message-popup" "css_element" should contain "border: 1px solid red;"
+      And the "style" attribute of "#gm-message-popup" "css_element" should contain "padding: 5px;"
+      And the field "id_designname" matches value "Design 1"
+      And the field "id_padding_top" matches value "5"
+      And the field "id_padding_right" matches value "5"
+      And the field "id_padding_bottom" matches value "5"
+      And the field "id_padding_left" matches value "5"
+      And the field "id_innerpadding_top" matches value "10"
+      And the field "id_innerpadding_right" matches value "10"
+      And the field "id_innerpadding_bottom" matches value "10"
+      And the field "id_innerpadding_left" matches value "10"
+      And the field "id_bgcolor" matches value "yellow"
+      And the field "id_bordersize" matches value "1"
+      And the field "id_bordercolor" matches value "red"
+      And the field "id_bordershape" matches value "solid"
+      And I set the field "id_bgcolor" to "blue"
+      And I press "yui-gen2000004-button"
+      And I accept the currently displayed dialog
+      And I click on "//div[@id='gm-design-message-dialog']/a[@class='container-close']" "xpath_element"
+      And I press "Manage Message Designs"
+      And I set the field "gmdesign_id" to "1"
+      And the field "id_bgcolor" matches value "blue"
+      And I click on "//div[@id='gm-design-message-dialog']/a[@class='container-close']" "xpath_element"
+      And I press "Create Global Message"
+      And I set the field "Design" to "Design 1"
+      And the field "Design" matches value "Design 1"
