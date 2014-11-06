@@ -4,7 +4,7 @@ Author:    Mohamed Alsharaf (mohamed.alsharaf@gmail.com)
 Website:   http://jamandcheese-on-phptoast.com
 Copyright: 2011-2012 Mohamed Alsharaf
 License:   http://www.gnu.org/copyleft/gpl.html
-Version:   2.1.3
+Version:   2.1.4
 
 == Changelog: ==
 2.0.0 - First version for Moodle 2.1
@@ -27,6 +27,7 @@ Version:   2.1.3
 2.1.1 - Compatible with Moodle 2.4.*
 2.1.2 - Bug fixes in info/about page
 2.1.3 - Compatible with Moodle 2.6.*
+2.1.4 - Compatible with Moodle 2.7.*
 
 == Installation ==
 1. Copy and paste the folder globalmessage into the local directory. If you don't have a local directory then create one in the Moodle root folder.
