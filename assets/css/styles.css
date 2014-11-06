@@ -1,22 +1,11 @@
-#middle-column {
-    font:13px/1.231 arial,helvetica,clean,sans-serif;
-    *font-size:small;
-    *font:x-small;
-}
-
-select,input,button,textarea {
-    font:99% arial,helvetica,clean,sans-serif;
-}
-table {
-    font-size:inherit;
-    font:100%;
-}
-pre,code,kbd,samp,tt {
-    font-family:monospace;
-    *font-size:108%;
-    line-height:100%;
-}
 .yui-pe-content {
+    display:none;
+}
+#gm-loading{
+    z-index: 1000 !important;
+    visibility:hidden;
+}
+.edit-title {
     display:none;
 }
 .yui-skin-sam .mask, .yui-skin-sam .yui-panel-container.shadow .underlay {
@@ -26,39 +15,33 @@ pre,code,kbd,samp,tt {
     filter: progid:DXImageTransform.Microsoft.Alpha(opacity=25);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=25)";
 }
-#gm-loading{
-    z-index: 1000 !important;
-    visibility:hidden;
+.yui-skin-sam .yui-dialog .ft, .yui-skin-sam .yui-panel .bd {
+    background: #fff;
 }
-.edit-title {
-    display:none;
+.yui-dialog {
+    position:fixed;
 }
-.gm-dialog form.mform  fieldset {
-    border: 1px solid #CCCCCC;
-    width: auto;
+.yui-skin-sam .yui-panel .bd fieldset {
+    padding: 10px;
 }
-.gm-dialog form.mform  {
-    padding: 5px;
-    width: auto;
-}
-.gm-dialog .fitemtitle {
-    margin-left: 0;
-    width: 16%;
-}
-.mform div.felement, .mform fieldset.felement {
-    width:82%;
+@media (min-width: 1200px)  {
+    .form-item .form-label, .mform .fitem div.fitemtitle, .userprofile dl.list dt, .form-horizontal .control-label {
+        width: 115px;
+    }
+    .form-item .form-setting, .form-item .form-description, .mform .fitem .felement, #page-mod-forum-search .c1, .mform .fdescription.required, .userprofile dl.list dd, .form-horizontal .controls {
+        margin-left: 145px;
+    }
 }
 .gm-dialog form.mform  input, .gm-dialog form.mform  textarea{
     width: 98%;
     padding: 2px;
 }
-.mform div.fhtmleditor {
-    clear: none;
-    display: inline;
-    float: left;
-    margin: 5px 0 0 10px;
-    overflow: hidden;
-    padding: 0;
+.button-group .default button, .button-group .default button:hover, #gm-preview-design-button {
+    text-shadow: 0 0px 0px rgba(255,255,255,0.75);
+    background-image: none !important;
+    border: 0px none;
+    box-shadow: inset 0 0px 0 rgba(255,255,255,0.2),0 0px 0px rgba(0,0,0,0.05);
+    background-color:transparent;
 }
 .mform div.fhtmleditor select {
     width:auto !important;
@@ -67,7 +50,7 @@ pre,code,kbd,samp,tt {
     width: 100%;
 }
 .gm-dialog form.mform  input.small {
-    width: 35%;
+    width: 33.3%;
 }
 .gm-dialog  .fitem .fgroup label {
     color: #666666;
@@ -169,7 +152,7 @@ pre,code,kbd,samp,tt {
     width: 45px;
 }
 #gm-rulestable .text {
-    width: 99%;    
+    width: 99%;
     padding: 5px 1px;
     margin: 0 !important;
 }
@@ -195,12 +178,6 @@ pre,code,kbd,samp,tt {
 }
 #gm-notice.noticebox {
     border:1px solid #DDDDDD;
-}
-.yui-skin-sam .yui-dialog .ft, .yui-skin-sam .yui-panel .bd {
-    background: #fff;
-}
-.yui-dialog {
-    position:fixed;
 }
 #gm-design-message-dialog .bd{
     overflow-x: hidden;

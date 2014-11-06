@@ -81,7 +81,6 @@ class moo_globalmessage_model_message extends moo_globalmessage_model
         if (!$messages) {
             return false;
         }
-
         foreach ($messages as $message) {
             // skip the message if the current user has seen it
             if (isset($options['user']->globalmessage) && in_array($message->id, $options['user']->globalmessage)) {

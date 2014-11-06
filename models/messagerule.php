@@ -299,7 +299,7 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
             $rightside = $this->get_rightside_value($rule->rightside);
             $construct = $this->get_construct_value($rule->construct);
 
-            $expression .= ' ' . $construct . ' (boolean)' . $this->process_expression($leftside, $rightside, $rule->operator) . ' === true';
+            $expression .= ' ' . $construct . ' (boolean)' . (int) $this->process_expression($leftside, $rightside, $rule->operator) . ' === true';
             $rulesparts[$rule->construct] = array(
                 $rule->leftside,
                 $rightside,
@@ -366,14 +366,11 @@ class moo_globalmessage_model_messagerule extends moo_globalmessage_model
         switch ($construct) {
             case self::CONSTRUCT_AND:
                 return '&&';
-                break;
             case self::CONSTRUCT_OR:
                 return '||';
-                break;
             case self::CONSTRUCT_IF:
             default:
                 return '';
-                break;
         }
     }
 
