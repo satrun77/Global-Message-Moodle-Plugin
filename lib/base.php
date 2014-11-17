@@ -13,7 +13,6 @@ define('INTERNAL_ACCESS', 1);
  */
 class moo_globalmessage
 {
-    private $version = '2.1.2';
     protected $user;
     protected $config;
     protected $course;
@@ -117,7 +116,9 @@ class moo_globalmessage
      */
     public function get_version()
     {
-        return $this->version;
+        $plugin = new \stdClass();
+        include_once __DIR__ . '/../version.php';
+        return $plugin->release;
     }
 
     /**
