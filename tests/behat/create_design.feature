@@ -22,7 +22,7 @@ Feature: Test creating a new message design & edit an exiting message design
       And I set the field "id_bordersize" to "1"
       And I set the field "id_bordercolor" to "red"
       And I set the field "id_bordershape" to "solid"
-      And I press "yui-gen2000004-button"
+      And I press "Save design"
       And I accept the currently displayed dialog
       And I set the field "gmdesign_id" to "1"
       And I press "gm-updatepreview-design-button"
@@ -45,7 +45,7 @@ Feature: Test creating a new message design & edit an exiting message design
       And the field "id_bordercolor" matches value "red"
       And the field "id_bordershape" matches value "solid"
       And I set the field "id_bgcolor" to "blue"
-      And I press "yui-gen2000004-button"
+      And I press "Save design"
       And I accept the currently displayed dialog
       And I click on "//div[@id='gm-design-message-dialog']/a[@class='container-close']" "xpath_element"
       And I press "Manage Message Designs"

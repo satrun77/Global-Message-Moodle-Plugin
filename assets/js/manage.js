@@ -89,6 +89,7 @@ globalmessage.messagedialog = function() {
             this.moodleEditorStatus = true;
         }
     }
+    this.saveButtonText = globalmessage.string('savemessage');
     return this;
 };
 globalmessage.showeditform = function(messageid) {
@@ -153,7 +154,7 @@ globalmessage.designdialog = function() {
     var elements = Y.all('#gm-design-form input[type=text], select'),
     self = this;
     this.elementid  = "gm-design-message-dialog";
-    this.saveButtonText = globalmessage.string('save');
+    this.saveButtonText = globalmessage.string('savedesign');
     this.handleSuccess = function(response, o) {
         alert(response.message);
         if (response.type == 'insert') {
@@ -384,7 +385,7 @@ globalmessage.ruledialog = function() {
     this.response = false;
     this.elementid  = "gm-rules-dialog";
     this.rowsCount = 0;
-    this.saveButtonText = globalmessage.string('save');
+    this.saveButtonText = globalmessage.string('saverules');
     this.handleSuccess = function(response, o) {
         if (typeof response.message != 'undefined') {
             alert(response.message);

@@ -33,7 +33,7 @@ Feature: Test display a message
       And I set the field "id_bordersize" to "1"
       And I set the field "id_bordercolor" to "red"
       And I set the field "id_bordershape" to "solid"
-      And I press "yui-gen2000004-button"
+      And I press "Save design"
       And I accept the currently displayed dialog
       And I click on "//div[@id='gm-design-message-dialog']/a[@class='container-close']" "xpath_element"
       And I press "Create Global Message"
@@ -42,7 +42,7 @@ Feature: Test display a message
       And I set the field "Description" to "Description of message 1"
       And I set the field "Enabled" to "Yes"
       And I set the field "Design" to "Design 1"
-      And I press "yui-gen2000002-button"
+      And I press "Save message"
       And I click on "//tr[contains(., 'Message 1')]/descendant::td/descendant::a[text()='Edit Rules']" "xpath_element"
       And I set the field "rules-left" to "courseid"
       And I set the field "rules-operator" to "1"
@@ -54,7 +54,7 @@ Feature: Test display a message
       And I set the field "rules-operator" to "1"
       And I set the field "rules-input" to "student1"
       And I click on "//a[@id='gm-add-rule-button']" "xpath_element"
-      And I press "yui-gen2000000-button"
+      And I press "Save rules"
       And I log out
       And I log in as "student1"
       And I follow "Course 1"

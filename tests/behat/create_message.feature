@@ -12,11 +12,11 @@ Feature: Test creating a new message & edit an exiting message
       And I set the field "Summary" to "Summary of message 1"
       And I set the field "Description" to "Description of message 1"
       And I set the field "Enabled" to "No"
-      And I press "yui-gen2000002-button"
+      And I press "Save message"
      Then I should see "Message 1"
       And I should see "Disabled"
       And I click on "//tr[contains(., 'Message 1')]/descendant::td/descendant::a[text()='Edit']" "xpath_element"
       And I wait "5" seconds
       And I set the field "Enabled" to "Yes"
-      And I press "yui-gen2000002-button"
+      And I press "Save message"
       And I should see "Enabled"
