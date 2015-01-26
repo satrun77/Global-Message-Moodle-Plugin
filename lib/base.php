@@ -117,7 +117,7 @@ class moo_globalmessage
     public function get_version()
     {
         $plugin = new \stdClass();
-        include_once __DIR__ . '/../version.php';
+        include __DIR__ . '/../version.php';
         return $plugin->release;
     }
 
