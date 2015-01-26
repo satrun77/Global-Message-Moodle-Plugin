@@ -127,16 +127,3 @@ moo_globalmessage::show_message();
         </div>
     </div>
 </div>
-
-<div id="gm-strings">
-    <input type="hidden" name="save" value="<?php echo $this->get_string('save'); ?>"/>
-    <input type="hidden" name="submit" value="<?php echo $this->get_string('submit'); ?>"/>
-    <input type="hidden" name="yes" value="<?php echo $this->get_string_fromcore('yes'); ?>"/>
-    <input type="hidden" name="no" value="<?php echo $this->get_string_fromcore('no'); ?>"/>
-    <input type="hidden" name="loadingimg" value="<?php echo $this->base_url('assets/img/loading.gif'); ?>"/>
-    <input type="hidden" name="loadingtext" value="<?php echo $this->get_string('loadingtext'); ?>"/>
-    <input type="hidden" name="removecustomruletext" value="<?php echo $this->get_string('removecustomruletext'); ?>"/>
-    <input type="hidden" name="confirmtitle" value="<?php echo $this->get_string('confirmtitle'); ?>"/>
-    <input type="hidden" name="install" value="<?php echo $this->get_string('install'); ?>"/>
-    <input type="hidden" name="uninstall" value="<?php echo $this->get_string('uninstall'); ?>"/>
-</div>

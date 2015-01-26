@@ -603,10 +603,11 @@ globalmessage.removerule = function(rule) {
     return true;
 }
 
-M.moo_gm.init = function(YUI) {
+M.moo_gm.init = function(YUI, strings) {
     Y = YUI;
     document.body.className += ' yui-skin-sam';
-    
+    globalmessage.strings = strings;
+
     loading = new Y.YUI2.widget.Panel("gm-loading", {
         width: "240px",
         fixedcenter: true,

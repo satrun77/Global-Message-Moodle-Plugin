@@ -66,12 +66,9 @@ globalmessage.select = function(select) {
     }
     return this;
 };
+globalmessage.strings = [];
 globalmessage.string = function(name) {
-    var t = Y.one("#gm-strings input[name^="+name+"]");
-    if (t != null) {
-        return t.get('value');
-    }
-    return '';
+    return this.strings[name];
 };
 globalmessage.alternatetablerows = function(el) {
     var rows = document.getElementById(el).getElementsByTagName('tr');

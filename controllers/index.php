@@ -27,7 +27,25 @@ class moo_globalmessage_controller_index extends moo_globalmessage_controller
             'name' => 'moo_gm',
             'fullpath' => 'manage.js',
             'requires' => array('base', 'cssfonts', 'yui2-json', 'node', 'overlay', 'event', 'io', 'yui2-button', 'yui2-calendar', 'yui2-container', 'yui2-connection', 'yui2-animation', 'yui2-element')
-        ));
+        ), array(array(
+            'ruleerror1'        => $this->get_string('ruleerror1'),
+            'failedajax'        => $this->get_string('failedajax'),
+            'ruleerror2'        => $this->get_string('ruleerror2'),
+            'ruleerror3'        => $this->get_string('ruleerror3'),
+            'messageerror1'     => $this->get_string('messageerror1'),
+            'messageerror2'     => $this->get_string('messageerror2'),
+            'save'              => $this->get_string('save'),
+            'submit'            => $this->get_string('submit'),
+            'designerror1'      => $this->get_string('designerror1'),
+            'designerror2'      => $this->get_string('designerror2'),
+            'yes'               => get_string('yes'),
+            'no'                => get_string('no'),
+            'removedesigntext'  => $this->get_string('removedesigntext'),
+            'removemessagetext' => $this->get_string('removemessagetext'),
+            'confirmtitle'      => $this->get_string('confirmtitle'),
+            'loadingimg'        => $this->view->base_url('assets/img/loading.gif'),
+            'loadingtext'       => $this->get_string('loadingtext'),
+        )));
         $this->head_script(array(
             $this->view->base_url('assets/js/base.js', true)
         ));

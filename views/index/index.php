@@ -40,26 +40,6 @@ echo $this->print_table($table);
 echo $this->print_paging_bar($this->countmessages, $this->page, $this->perpage, "index.php");
 ?>
 
-<div id="gm-strings">
-    <input type="hidden" name="ruleerror1" value="<?php echo $this->get_string('ruleerror1'); ?>"/>
-    <input type="hidden" name="failedajax" value="<?php echo $this->get_string('failedajax'); ?>"/>
-    <input type="hidden" name="ruleerror2" value="<?php echo $this->get_string('ruleerror2'); ?>"/>
-    <input type="hidden" name="ruleerror3" value="<?php echo $this->get_string('ruleerror3'); ?>"/>
-    <input type="hidden" name="messageerror1" value="<?php echo $this->get_string('messageerror1'); ?>"/>
-    <input type="hidden" name="messageerror2" value="<?php echo $this->get_string('messageerror2'); ?>"/>
-    <input type="hidden" name="save" value="<?php echo $this->get_string('save'); ?>"/>
-    <input type="hidden" name="submit" value="<?php echo $this->get_string('submit'); ?>"/>
-    <input type="hidden" name="designerror1" value="<?php echo $this->get_string('designerror1'); ?>"/>
-    <input type="hidden" name="designerror2" value="<?php echo $this->get_string('designerror2'); ?>"/>
-    <input type="hidden" name="yes" value="<?php echo $this->get_string_fromcore('yes'); ?>"/>
-    <input type="hidden" name="no" value="<?php echo $this->get_string_fromcore('no'); ?>"/>
-    <input type="hidden" name="removedesigntext" value="<?php echo $this->get_string('removedesigntext'); ?>"/>
-    <input type="hidden" name="removemessagetext" value="<?php echo $this->get_string('removemessagetext'); ?>"/>
-    <input type="hidden" name="confirmtitle" value="<?php echo $this->get_string('confirmtitle'); ?>"/>
-    <input type="hidden" name="loadingimg" value="<?php echo $this->base_url('assets/img/loading.gif'); ?>"/>
-    <input type="hidden" name="loadingtext" value="<?php echo $this->get_string('loadingtext'); ?>"/>
-</div>
-
 <?php echo $this->render_partial('partial/message-form'); ?>
 <?php echo $this->render_partial('partial/rule-form'); ?>
 <?php echo $this->render_partial('partial/design-form'); ?>

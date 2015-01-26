@@ -27,7 +27,18 @@ class moo_globalmessage_controller_about extends moo_globalmessage_controller
             'name' => 'moo_gm',
             'fullpath' => 'about.js',
             'requires' => array('base', 'cssfonts', 'tabview', 'yui2-json', 'node', 'overlay', 'event', 'io', 'yui2-button', 'yui2-container', 'yui2-connection', 'yui2-animation', 'yui2-element')
-        ));
+        ), array(array(
+            'save'                 => $this->get_string('save'),
+            'submit'               => $this->get_string('submit'),
+            'yes'                  => get_string('yes'),
+            'no'                   => get_string('no'),
+            'loadingimg'           => $this->view->base_url('assets/img/loading.gif'),
+            'loadingtext'          => $this->get_string('loadingtext'),
+            'removecustomruletext' => $this->get_string('removecustomruletext'),
+            'confirmtitle'         => $this->get_string('confirmtitle'),
+            'install'              => $this->get_string('install'),
+            'uninstall'            => $this->get_string('uninstall'),
+        )));
         $this->head_script(array(
             $this->view->base_url('assets/js/base.js', true)
         ));
