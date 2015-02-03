@@ -41,7 +41,7 @@ class moo_globalmessage_form_message extends moo_globalmessage_form
 
         $designs = $this->view->designs;
         if (is_array($designs)) {
-            array_unshift($designs, $this->get_string_fromcore('choose'));
+            $designs = array($this->get_string_fromcore('choose')) + $designs;
         }
         $this->_form->addElement('select', 'design', $this->get_string('design'), $designs);
         $this->_form->setType('design', PARAM_INT);
