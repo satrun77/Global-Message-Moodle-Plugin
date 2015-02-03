@@ -24,7 +24,7 @@ before_script:
  - sh -c "sed -i -e s/'password'/''/ -e s/example.com/localhost/ -e s%192.168.1.250%localhost% -e s%127.0.0.1/moodle%localhost:8000% -e s%/home/example%$HOME% -e 's%\(\$CFG.*bht\)%\n\1%' -e 's%\(\$CFG.*behat_wwwroot.*http://localhost:8000\)%\n\1%' config.php" 
  - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'create database moodle;' -U postgres; fi"
  - sh -c "if [ '$DB' = 'pgsql' ]; then sed -i s/\'username\'/\'postgres\'/ config.php; fi"
- - echo "class theme_clean_core_renderer extends core_renderer {public function standard_end_of_body_html() {global \$CFG; include_once \$CFG->dirroot . '/local/globalmessage/lib/base.php';moo_globalmessage::show_message();return parent::standard_end_of_body_html();}}" >> theme/clean/lib.php
+ - echo "class theme_clean_core_renderer extends core_renderer {public function standard_end_of_body_html() {global \$CFG; include_once \$CFG->dirroot . '/local/globalmessage/lib/base.php';moo_globalmessage::show_message();return parent::standard_end_of_body_html();}}" >> theme/clean/renderers.php
  - mkdir -m777 $HOME/moodledata
  - "(php -S localhost:8000 &) 2> /dev/null > /dev/null"
  - "wget http://selenium-release.storage.googleapis.com/2.42/selenium-server-standalone-2.42.2.jar"
