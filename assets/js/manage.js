@@ -50,7 +50,11 @@ globalmessage.messagedialog = function() {
             document.body.appendChild(tempEl);
             tempEl.innerHTML = tableHTML;
             var newRows = tempEl.getElementsByTagName('tr');
-            table.appendChild(newRows[0]);
+            if (Y.one('#gm-table tbody').hasClass('empty')) {
+                Y.one('#gm-table tbody').removeClass('empty');
+                Y.one('#gm-table tbody').set('innerHTML', '');
+            }
+            table.getElementsByTagName('tbody')[0].appendChild(newRows[0]);
             document.body.removeChild(tempEl);
         } else {
             var tds = row.all('td');
@@ -380,8 +384,7 @@ globalmessage.designdialog = function() {
 };
 globalmessage.ruledialog = function() {
     globalmessage.dialog.prototype.constructor.call(this);
-    var self = this, table = document.getElementById('gm-rulestable'),
-    tbody = table.getElementsByTagName('tbody')[0];
+    var self = this, table = Y.one('#gm-rulestable tbody');
     this.response = false;
     this.elementid  = "gm-rules-dialog";
     this.rowsCount = 0;
@@ -406,13 +409,7 @@ globalmessage.ruledialog = function() {
         document.getElementById('gm-rules-dialog-title').innerHTML = title;
     };
     this.clearRows = function() {
-        var trs = tbody.getElementsByTagName('tr');
-        var trslength = trs.length-1;
-        for (var j=trslength; j>0; j--) {
-            try{
-                tbody.removeChild(trs[j]);
-            } catch(e) {}
-        }
+        table.set('innerHTML', '');
     };
     this.renderRow = function(data, order) {
         var row = document.createElement('tr'), createtd;
@@ -453,7 +450,7 @@ globalmessage.ruledialog = function() {
                     operator: anrule.operatortext,
                     input: anrule.rightsidetext
                 }, this.rowsCount);
-                tbody.appendChild(row);
+                table.append(row);
                 this.rowsCount++;
             }
         }
@@ -495,7 +492,6 @@ globalmessage.ruledialog = function() {
             return alert(globalmessage.string('ruleerror2'));
         }
         var state = Y.YUI2.util.Dom.get('rules-state');
-        var table = Y.YUI2.util.Dom.get('gm-rulestable');
         var rows = Y.all('#gm-rulestable .rule-row').size();
 
         var row = self.renderRow({
@@ -508,8 +504,11 @@ globalmessage.ruledialog = function() {
             operatorval: operator.value,
             inputval: input.value
         }, rows);
-
-        table.getElementsByTagName('tbody')[0].appendChild(row);
+        if (table.hasClass('empty')) {
+            table.removeClass('empty');
+            table.set('innerHTML', '');
+        }
+        table.append(row);
         globalmessage.alternatetablerows('gm-rulestable');
         if (rows == 0) {
             state = document.getElementById('rules-state');
@@ -589,15 +588,15 @@ globalmessage.showrulesform = function(messageid) {
     });
 }
 globalmessage.removerule = function(rule) {
-    var tr = Y.YUI2.util.Dom.get('role-'+rule), state = Y.YUI2.util.Dom.get('rules-state'),
-    table = Y.YUI2.util.Dom.get('gm-rulestable'),
+    var tr = Y.one('#role-'+rule), state = Y.YUI2.util.Dom.get('rules-state'),
+    table = Y.one('#gm-rulestable tbody'),
     rows = Y.all('#gm-rulestable .rule-row').size();
 
     if (rule == 0 && rows > 1) {
         return alert(globalmessage.string('ruleerror1'));
     }
 
-    table.getElementsByTagName('tbody')[0].removeChild(tr);
+    tr.remove();
     if (rows == 1) {
         globalmessage.select(state).addIfOption();
     }
