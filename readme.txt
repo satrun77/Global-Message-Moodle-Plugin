@@ -28,6 +28,7 @@ Version:   2.1.4
 2.1.2 - Bug fixes in info/about page
 2.1.3 - Compatible with Moodle 2.6.*
 2.1.4 - Compatible with Moodle 2.7.*
+2.1.5 - Compatible with Moodle 2.8.*
 
 == Installation ==
 1. Copy and paste the folder globalmessage into the local directory. If you don't have a local directory then create one in the Moodle root folder.
@@ -43,7 +44,9 @@ $THEME->rendererfactory = 'theme_overridden_renderer_factory';
 
 8. Create a new file in the same direcotry of your theme renderers.php and then place the following code.
 
-class theme_[theme name]_core_renderer extends core_renderer
+require_once(__DIR__ . '/../bootstrapbase/renderers.php');
+
+class theme_[theme name]_core_renderer extends theme_bootstrapbase_core_renderer
 {
     public function standard_end_of_body_html() {
         global $CFG;
