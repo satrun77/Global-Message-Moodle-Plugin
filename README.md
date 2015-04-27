@@ -100,8 +100,21 @@ class theme_[theme name]_core_renderer extends theme_bootstrapbase_core_renderer
 
 4. Enable global message.
 
+## Q/A & Help information
+
+#### Q 1) Issue [#7](https://github.com/satrun77/Global-Message-Moodle-Plugin/issues/7): Corrupted CSS theme after completing the installation steps from 8 to 10
+
+Instead of the steps 8 to 10, place the following code above the call to `echo $OUTPUT->course_content_header();`
+
+```
+include_once $CFG->dirroot . '/local/globalmessage/lib/base.php';
+moo_globalmessage::show_message();
+```
+
 ## Thank You for your contribution
 
 - Spanish translation (By the Moodler "Nacho Aguilar")
 - German translation (By the Moodler "Joachim Vogelgesang")
 - Portuguese/Brazil translation (By the Moodler "felipe camboa")
+- General contributions:
+	- Ben Tindell
