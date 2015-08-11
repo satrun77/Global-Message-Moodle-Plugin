@@ -34,4 +34,5 @@ before_script:
  - php admin/tool/behat/cli/init.php
 
 script:
- - vendor/bin/behat --config /home/travis/bht_moodledata/behat/behat.yml --tags @local_globalmessage
+ - vendor/bin/behat -v --config /home/travis/bht_moodledata/behat/behat.yml --tags @local_globalmessage --format pretty
+
