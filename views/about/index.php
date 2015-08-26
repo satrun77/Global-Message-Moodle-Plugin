@@ -110,7 +110,7 @@
             </div>
             <ul>
                 <li><strong><?php echo $this->get_string_fromcore('name'); ?>:</strong> Mohamed Alsharaf (mohamed.alsharaf@gmail.com)</li>
-                <li><strong><?php echo $this->get_string('website'); ?></strong> <a href="http://jamandcheese-on-phptoast.com/" target="_blank">http://jamandcheese-on-phptoast.com/</a></li>
+                <li><strong><?php echo $this->get_string('website'); ?></strong> <a href="http://my.geek.nz/" target="_blank">http://my.geek.nz/</a></li>
                 <li><strong><?php echo $this->get_string('copyright'); ?>:</strong> 2011-<?php echo date('Y') + 1; ?> Mohamed Alsharaf</li>
                 <li><strong><?php echo $this->get_string('license'); ?>:</strong> <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">http://www.gnu.org/copyleft/gpl.html</a></li>
             </ul>
