@@ -184,3 +184,18 @@
     overflow-y: auto;
     height: 500px;
 }
+
+#gm-create-message-dialog_c #id_general, #gm-design-message-dialog_c #id_general
+{border: none;}
+
+#gm-create-message-dialog_c .form-item .form-label, #gm-create-message-dialog_c .mform .fitem div.fitemtitle, #gm-design-message-dialog_c .form-item .form-label, #gm-design-message-dialog_c .mform .fitem div.fitemtitle
+{width: 100px;}
+
+#gm-create-message-dialog_c .form-item .form-setting, #gm-create-message-dialog_c .form-item .form-description, #gm-create-message-dialog_c .mform .fitem .felement, #gm-create-message-dialog_c .c1
+{width: auto; margin: 0 0 0 110px;}
+
+#gm-create-message-dialog_c legend, #gm-design-message-dialog_c legend
+{border-bottom: 0px;}
+
+#gm-design-message-dialog_c .form-item .form-setting, #gm-design-message-dialog_c .form-item .form-description, #gm-design-message-dialog_c .mform .fitem .felement, #gm-design-message-dialog_c .c1
+{width: auto; margin: 0 0 0 110px;}

@@ -268,15 +268,21 @@ class moo_globalmessage_view
      * @param object $message
      * @return string 
      */
+
     protected function message_outter_styles($message)
     {
-        $styles = 'width:' . (int) $message->width . 'px;height:' . (int) $message->height . 'px;'
+        $styles = 'width: auto; height: auto;'
                 . 'padding:' . join('px ', $message->padding) . 'px;';
 
+        if($message->bordersize == 0){
+            $styles .= 'border: 1px solid #e3e3e3;';
+        }
         if ($message->bordersize > 0) {
             $styles .= 'border: ' . $message->bordersize . 'px ' . $message->bordershape . ' ' . $message->bordercolor . ';';
         }
-
+        if($message->bgcolor == ''){
+            $styles .= 'background-color: lightblue;';
+        }
         if ($message->bgcolor != '') {
             $styles .= 'background-color:' . $message->bgcolor . ';';
         }
@@ -289,8 +295,8 @@ class moo_globalmessage_view
         if ($message->bgimagerepeat != '') {
             $styles .= 'background-repeat:' . $message->bgimagerepeat . ';';
         }
-        $styles .= 'display:block;position:fixed;top:20px;z-index: 90000;left:50%;'
-                . 'margin-left:-' . (($message->width + $message->padding['left'] + $message->padding['right']) / 2) . 'px;';
+        $styles .= 'display:block;position:fixed;top:20px;z-index: 90000;left:50%;border-radius: 4px;padding: 5px;top:60px;max-width:50%;left:25%;'
+                . 'margin-left:auto;';
 
         return $styles;
     }
